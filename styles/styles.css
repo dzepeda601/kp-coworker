@@ -560,6 +560,12 @@ main img:not([width], [height]) {
 }
 
 /* sections – boilerplate structure with design tokens */
+
+/* a section left empty (e.g. it only held the page metadata, removed on publish) adds no space */
+main > .section:not(:has(> *)) {
+  display: none;
+}
+
 :is(main, article.article-body) > .section {
   margin: inherit;
   padding-block: var(--section-block-space);
