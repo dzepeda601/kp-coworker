@@ -115,7 +115,7 @@ export default function parse(element, { document }) {
       element.replaceWith(...element.childNodes);
       return;
     }
-    element.replaceWith(WebImporter.Blocks.createBlock(document, { name: 'cards-articles', cells }));
+    element.replaceWith(WebImporter.Blocks.createBlock(document, { name: 'Cards (Articles)', cells }));
     return;
   }
 
@@ -134,7 +134,7 @@ export default function parse(element, { document }) {
 
     nodes.push(document.createElement('hr'));
     nodes.push(WebImporter.Blocks.createBlock(document, { name: 'Section Metadata', cells: meta }));
-    nodes.push(WebImporter.Blocks.createBlock(document, { name: 'cards-articles', cells }));
+    nodes.push(WebImporter.Blocks.createBlock(document, { name: 'Cards (Articles)', cells }));
     const link = viewAllLink(buttons[i], document);
     if (link) nodes.push(link);
   });

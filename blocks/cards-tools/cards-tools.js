@@ -1,4 +1,4 @@
-import { createTag } from '../../scripts/shared.js';
+import { createTag, unbuttonLinks } from '../../scripts/shared.js';
 
 /** Number of tiles visible before the "view all" toggle. */
 const VISIBLE_COUNT = 6;
@@ -64,10 +64,7 @@ export default function decorate(block) {
     });
 
     // Tool links render as text links, not buttons.
-    body.querySelectorAll('a').forEach((a) => {
-      a.classList.remove('button', 'primary', 'secondary');
-      a.parentElement?.classList.remove('button-container');
-    });
+    unbuttonLinks(body);
     const lastLink = [...body.querySelectorAll(':scope > p')].pop();
     if (lastLink?.querySelector('a') && lastLink.textContent.trim() === lastLink.querySelector('a').textContent.trim()) {
       lastLink.classList.add('cards-tools-card-cta');

@@ -125,7 +125,7 @@ var CustomImportScript = (() => {
           element.replaceWith(...element.childNodes);
           return;
         }
-        const block2 = WebImporter.Blocks.createBlock(document, { name: "cards-spotlight", cells: carouselCells });
+        const block2 = WebImporter.Blocks.createBlock(document, { name: "Cards (Spotlight)", cells: carouselCells });
         element.replaceWith(block2);
         return;
       }
@@ -159,7 +159,7 @@ var CustomImportScript = (() => {
       element.replaceWith(...element.childNodes);
       return;
     }
-    const block = WebImporter.Blocks.createBlock(document, { name: "cards-spotlight", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "Cards (Spotlight)", cells });
     element.replaceWith(block);
   }
 
@@ -385,7 +385,7 @@ var CustomImportScript = (() => {
         element.replaceWith(...element.childNodes);
         return;
       }
-      element.replaceWith(WebImporter.Blocks.createBlock(document, { name: "cards-articles", cells }));
+      element.replaceWith(WebImporter.Blocks.createBlock(document, { name: "Cards (Articles)", cells }));
       return;
     }
     const nodes = [];
@@ -399,7 +399,7 @@ var CustomImportScript = (() => {
       if (!nodes.length && label) meta["tabs-label"] = label;
       nodes.push(document.createElement("hr"));
       nodes.push(WebImporter.Blocks.createBlock(document, { name: "Section Metadata", cells: meta }));
-      nodes.push(WebImporter.Blocks.createBlock(document, { name: "cards-articles", cells }));
+      nodes.push(WebImporter.Blocks.createBlock(document, { name: "Cards (Articles)", cells }));
       const link = viewAllLink(buttons[i], document);
       if (link) nodes.push(link);
     });
@@ -446,7 +446,7 @@ var CustomImportScript = (() => {
       element.replaceWith(...element.childNodes);
       return;
     }
-    const block = WebImporter.Blocks.createBlock(document, { name: "cards-care", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "Cards (Care)", cells });
     element.replaceWith(block);
   }
 

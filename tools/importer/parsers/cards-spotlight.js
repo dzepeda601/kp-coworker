@@ -74,7 +74,7 @@ export default function parse(element, { document }) {
         element.replaceWith(...element.childNodes);
         return;
       }
-      const block = WebImporter.Blocks.createBlock(document, { name: 'cards-spotlight', cells: carouselCells });
+      const block = WebImporter.Blocks.createBlock(document, { name: 'Cards (Spotlight)', cells: carouselCells });
       element.replaceWith(block);
       return;
     }
@@ -115,6 +115,6 @@ export default function parse(element, { document }) {
     return;
   }
 
-  const block = WebImporter.Blocks.createBlock(document, { name: 'cards-spotlight', cells });
+  const block = WebImporter.Blocks.createBlock(document, { name: 'Cards (Spotlight)', cells });
   element.replaceWith(block);
 }

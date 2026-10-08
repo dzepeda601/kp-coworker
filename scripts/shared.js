@@ -70,6 +70,17 @@ export function createTag(tag, attributes = {}, content = null) {
 }
 
 /**
+ * Turn auto-decorated buttons back into inline text links (for blocks whose links read as text).
+ * @param {Element} scope - Element whose links should not render as buttons
+ */
+export function unbuttonLinks(scope) {
+  scope.querySelectorAll('a.button').forEach((a) => {
+    a.classList.remove('button', 'primary', 'secondary');
+    a.closest('.button-container')?.classList.remove('button-container');
+  });
+}
+
+/**
  * Format a date value for display.
  * @param {string|number} dateValue - Date string or timestamp
  * @returns {string} Formatted date string

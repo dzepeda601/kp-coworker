@@ -135,7 +135,7 @@ var CustomImportScript = (() => {
           element.replaceWith(...element.childNodes);
           return;
         }
-        const block2 = WebImporter.Blocks.createBlock(document, { name: "cards-spotlight", cells: carouselCells });
+        const block2 = WebImporter.Blocks.createBlock(document, { name: "Cards (Spotlight)", cells: carouselCells });
         element.replaceWith(block2);
         return;
       }
@@ -169,7 +169,7 @@ var CustomImportScript = (() => {
       element.replaceWith(...element.childNodes);
       return;
     }
-    const block = WebImporter.Blocks.createBlock(document, { name: "cards-spotlight", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "Cards (Spotlight)", cells });
     element.replaceWith(block);
   }
 
@@ -218,7 +218,7 @@ var CustomImportScript = (() => {
       element.replaceWith(...element.childNodes);
       return;
     }
-    const block = WebImporter.Blocks.createBlock(document, { name: "cards-teaser", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "Cards (Panels)", cells });
     element.replaceWith(block);
   }
 
@@ -250,7 +250,7 @@ var CustomImportScript = (() => {
     }
     const hasImages = rows.some((r) => r.image);
     const cells = rows.map((r) => hasImages ? [r.image || "", r.text] : [r.text]);
-    const block = WebImporter.Blocks.createBlock(document, { name: "cards-pillars", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "Cards (Pillars)", cells });
     element.replaceWith(block);
   }
 
@@ -318,7 +318,7 @@ var CustomImportScript = (() => {
       element.replaceWith(...element.childNodes);
       return;
     }
-    const block = WebImporter.Blocks.createBlock(document, { name: "cards-news", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "Cards (News)", cells });
     element.replaceWith(block);
   }
 
@@ -352,7 +352,7 @@ var CustomImportScript = (() => {
       element.replaceWith(...element.childNodes);
       return;
     }
-    const block = WebImporter.Blocks.createBlock(document, { name: "cards-notices", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "Cards (Notices)", cells });
     if (headingEl) element.before(headingEl);
     element.replaceWith(block);
   }

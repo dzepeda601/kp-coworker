@@ -1,7 +1,11 @@
-/* Cards – KP cards (healthy.kaiserpermanente.org): white / card-dark surface, hairline border,
-   16px radius, soft shadow. Hover = darker border + title underline (no lift or zoom). */
+/* Cards – KP cards (healthy.kaiserpermanente.org).
+   Default cards: white / card-dark surface, hairline border, 16px radius, soft shadow.
+   Hover = darker border + title underline (no lift or zoom).
+   Variants spotlight, articles, care, news, panels, pillars and notices share one content
+   model (media cell + text cell) and are styled in their own sections below; the default
+   card rules are scoped so they do not apply to them. */
 
-.cards > ul {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) > ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -10,7 +14,7 @@
   gap: var(--space-m);
 }
 
-.cards > ul > li {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) > ul > li {
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -22,17 +26,17 @@
   transition: border-color 0.2s ease-out;
 }
 
-.cards > ul > li:hover {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) > ul > li:hover {
   border-color: light-dark(rgb(0 0 0 / 20%), rgb(242 248 251 / 32%));
 }
 
 /* Article wrapper — layout-invisible so the card link remains the direct flex child */
-.cards > ul > li > article {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) > ul > li > article {
   display: contents;
 }
 
 /* Card link (div wrapper for authored cards, <a> for the links variant) */
-.cards .cards-card-link {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-link {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -40,31 +44,31 @@
   color: inherit;
 }
 
-.cards a.cards-card-link:any-link {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) a.cards-card-link:any-link {
   color: inherit;
   text-decoration: none;
 }
 
-.cards a.cards-card-link:focus-visible {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) a.cards-card-link:focus-visible {
   outline: none;
 }
 
 /* Image */
-.cards .cards-card-image {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-image {
   line-height: 0;
   flex-shrink: 0;
   overflow: hidden;
 }
 
-.cards .cards-card-image p {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-image p {
   margin: 0;
 }
 
-.cards .cards-card-image picture {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-image picture {
   display: block;
 }
 
-.cards .cards-card-image img {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-image img {
   display: block;
   width: 100%;
   height: auto;
@@ -73,27 +77,27 @@
 }
 
 /* no image zoom on hover (overrides the global linked-image hover) */
-.cards .cards-card-image a:hover img,
-.cards a.cards-card-link:hover .cards-card-image img {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-image a:hover img,
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) a.cards-card-link:hover .cards-card-image img {
   transform: none;
   filter: none;
 }
 
 /* Body */
-.cards .cards-card-body {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body {
   flex-grow: 1;
   padding: var(--space-m);
 }
 
-.cards .cards-card-body > :first-child {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body > :first-child {
   margin-top: 0;
 }
 
-.cards .cards-card-body > :last-child {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body > :last-child {
   margin-bottom: 0;
 }
 
-.cards .cards-card-body p {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body p {
   margin: var(--space-s) 0 0;
   color: var(--text-color);
   font-size: var(--body-font-size-m);
@@ -101,8 +105,8 @@
 }
 
 /* Title: authored heading, or the first paragraph (usually bold / linked) */
-.cards .cards-card-body :is(h2, h3, h4),
-.cards .cards-card-body > p:first-child {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body :is(h2, h3, h4),
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body > p:first-child {
   margin: 0;
   color: var(--text-color);
   font-family: var(--heading-font-family);
@@ -112,37 +116,37 @@
   letter-spacing: normal;
 }
 
-.cards .cards-card-body > p:first-child :is(strong, b) {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body > p:first-child :is(strong, b) {
   font-weight: inherit;
 }
 
 /* Title links: navy text; the global link hover adds the underline */
-.cards .cards-card-body :is(h2, h3, h4) a:any-link,
-.cards .cards-card-body > p:first-child a:any-link {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body :is(h2, h3, h4) a:any-link,
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body > p:first-child a:any-link {
   color: inherit;
 }
 
 /* Tablet: 2 columns */
 @media (width >= 600px) {
-  .cards > ul {
+  .cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) > ul {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* Desktop */
 @media (width >= 900px) {
-  .cards > ul {
+  .cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) > ul {
     grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
   }
 
-  .cards .cards-card-body {
+  .cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body {
     padding: var(--space-l);
   }
 }
 
 @media (width >= 1200px) {
-  .cards .cards-card-body :is(h2, h3, h4),
-  .cards .cards-card-body > p:first-child {
+  .cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body :is(h2, h3, h4),
+  .cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-card-body > p:first-child {
     font-size: var(--body-font-size-xl);
     line-height: 28px;
     letter-spacing: -0.01em;
@@ -150,7 +154,7 @@
 }
 
 /* Links variant empty state */
-.cards .cards-links-empty {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) .cards-links-empty {
   margin: 0;
   padding: var(--space-m);
   color: light-dark(var(--color-gray-600), var(--color-muted));
@@ -286,14 +290,1024 @@
 }
 
 /* keyboard focus ring on the whole card when the card itself is the link */
-.cards > ul > li:has(a.cards-card-link:focus-visible) {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) > ul > li:has(a.cards-card-link:focus-visible) {
   outline: 2px solid var(--link-color);
   outline-offset: 2px;
 }
 
 /* links variant hover: title underline (authored title links use the global link hover) */
-.cards a.cards-card-link:hover .cards-card-body > p:first-child {
+.cards:where(:not(.spotlight, .articles, .care, .news, .panels, .pillars, .notices)) a.cards-card-link:hover .cards-card-body > p:first-child {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
+}
+
+/* ==========================================================================
+   Shared-model variants (spotlight, articles, care, news, panels, pillars, notices)
+   Each row is a card: optional media cell + text cell. Shared rules first,
+   variant sections below only hold what differs.
+   Variant selectors use .cards:where(.variant) so each keeps the specificity it had as a
+   standalone block (.cards-variant), which page templates such as health-wellness rely on.
+   ========================================================================== */
+
+/* stylelint-disable no-descending-specificity -- variant sections are mutually exclusive
+   (a block carries one variant class), so their selectors never compete with each other */
+
+.cards {
+  --cards-hairline: rgb(0 0 0 / 8%);
+  --cards-shadow: 0 4px 20px rgb(0 0 0 / 4%);
+}
+
+.cards .cards-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards .cards-card-image picture {
+  display: block;
+}
+
+/* whole-card click target: the title link is stretched over its card */
+.cards .cards-card-main-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.cards .cards-card:has(.cards-card-main-link:focus-visible) {
+  outline: 2px solid var(--kp-blue, #0074ad);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Variant: spotlight (formerly cards-spotlight)
+   ========================================================================== */
+
+.cards:where(.spotlight) {
+  margin: 0 0 var(--space-l);
+  color: var(--kp-navy, #0d1c3d);
+}
+
+.cards:where(.spotlight) .cards-list {
+  grid-template-columns: 1fr;
+  gap: var(--space-m);
+}
+
+.cards:where(.spotlight) .cards-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 var(--space-m);
+  border: 1px solid var(--cards-hairline);
+  border-radius: 16px;
+  background-color: #fff;
+}
+
+.cards:where(.spotlight) .cards-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.cards:where(.spotlight) .cards-card-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: var(--space-m);
+}
+
+main .cards:where(.spotlight) .cards-card-body h3 {
+  margin: var(--space-m) 0;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+main .cards:where(.spotlight) .cards-card-body p {
+  margin: 0;
+  padding-top: var(--space-s);
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Title link: navy text, no underline (source card shows no hover change). */
+.cards:where(.spotlight) .cards-card-main-link:any-link,
+.cards:where(.spotlight) .cards-card-main-link:hover,
+.cards:where(.spotlight) .cards-card-main-link:focus-visible {
+  outline: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Whole-card click target via the stretched title link. */
+.cards:where(.spotlight) .cards-card-main-link::after {
+  border-radius: 16px;
+}
+
+@media (width >= 900px) {
+  .cards:where(.spotlight) .cards-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cards:where(.spotlight) .cards-card {
+    margin: 0;
+  }
+
+  main .cards:where(.spotlight) .cards-card-body h3 {
+    margin: 20px 0;
+  }
+}
+
+@media (width >= 1200px) {
+  .cards:where(.spotlight) .cards-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  main .cards:where(.spotlight) .cards-card-body h3 {
+    margin: var(--space-l) 0;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Resource cards with a category eyebrow above the title (KP front-door
+   "More resources" carousel). Only matches when cards carry an eyebrow,
+   so the plain spotlight cards above are untouched.
+   Values extracted from healthy.kaiserpermanente.org/northern-california/front-door. */
+.cards:where(.spotlight):has(.cards-card-eyebrow) .cards-list {
+  grid-auto-columns: 319px;
+  grid-auto-flow: column;
+  grid-template-columns: none;
+  gap: 12px;
+  padding: 2px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgb(0 0 0 / 16%);
+  border-radius: 12px;
+  box-shadow: var(--cards-shadow);
+  scroll-snap-align: start;
+}
+
+.cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-image img {
+  aspect-ratio: 3 / 2;
+  border-radius: 0;
+}
+
+.cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-body {
+  padding: 0 var(--space-m) 5px var(--space-s);
+}
+
+.cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-main-link::after {
+  border-radius: 12px;
+}
+
+main .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-body p.cards-card-eyebrow {
+  margin: 31px 0 var(--space-s);
+  padding: 0;
+  color: var(--kp-blue-dark, #003b71);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15.96px;
+  letter-spacing: -0.12px;
+}
+
+/* Source title margin (8px mobile / 12px desktop) collapses into the description's 20px top margin. */
+main .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-body :is(h2, h3, h4, h5, h6) {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+}
+
+main .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-body p:not(.cards-card-eyebrow) {
+  margin: 20px 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+}
+
+@media (width >= 600px) {
+  .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-list {
+    grid-auto-columns: 87%;
+  }
+}
+
+@media (width >= 900px) {
+  .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-list {
+    grid-auto-columns: calc((100% - 22px) / 3);
+    gap: 11px;
+  }
+
+  .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-body {
+    padding: 0 10px 5px;
+  }
+
+  main .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-body p.cards-card-eyebrow {
+    margin-bottom: 10px;
+    letter-spacing: normal;
+  }
+
+  main .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-body :is(h2, h3, h4, h5, h6) {
+    letter-spacing: normal;
+  }
+
+  main .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-body p:not(.cards-card-eyebrow) {
+    letter-spacing: 0.16px;
+  }
+}
+
+@media (width >= 1200px) {
+  .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-list {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    overflow-x: visible;
+  }
+
+  .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-body {
+    padding: 0 12px 5px;
+  }
+
+  main .cards:where(.spotlight):has(.cards-card-eyebrow) .cards-card-body p.cards-card-eyebrow {
+    margin: 42px 0 13px;
+  }
+}
+
+/* ==========================================================================
+   Variant: articles (formerly cards-articles)
+   ========================================================================== */
+
+.cards:where(.articles) {
+  color: var(--kp-navy, #0d1c3d);
+}
+
+.cards:where(.articles) .cards-list {
+  grid-template-columns: 1fr;
+  gap: var(--space-s) 18px;
+}
+
+.cards:where(.articles) .cards-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 0 var(--space-l);
+  border: 1px solid var(--cards-hairline);
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: var(--cards-shadow);
+}
+
+/* image area is 8px taller than the image on the source */
+.cards:where(.articles) .cards-card-image {
+  padding-bottom: var(--space-s);
+}
+
+.cards:where(.articles) .cards-card-image img {
+  display: block;
+  width: 100%;
+  height: 144px;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+.cards:where(.articles) .cards-card-body {
+  flex: 1 1 auto;
+  padding: 0 var(--space-m);
+}
+
+main .cards:where(.articles).block p.cards-card-eyebrow {
+  margin: var(--space-m) 0 12px;
+  color: var(--kp-blue-dark, #003b71);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+main .cards:where(.articles).block .cards-card-body h3 {
+  margin: 0 0 12px;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
+/* Title link: navy text, no underline. */
+main .cards:where(.articles).block .cards-card-main-link:any-link,
+main .cards:where(.articles).block .cards-card-main-link:hover,
+main .cards:where(.articles).block .cards-card-main-link:focus-visible {
+  outline: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Whole-card click target via the stretched title link. */
+
+@media (width >= 600px) {
+  .cards:where(.articles) .cards-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards:where(.articles) .cards-card-image img {
+    height: 160px;
+  }
+}
+
+@media (width >= 1200px) {
+  .cards:where(.articles) .cards-list {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 12px;
+  }
+
+  /* keep the source image proportions (335 x 190) now that cards are wider */
+  .cards:where(.articles) .cards-card-image img {
+    height: auto;
+    aspect-ratio: 335 / 190;
+  }
+
+  main .cards:where(.articles).block .cards-card-body h3 {
+    line-height: 28px;
+  }
+}
+
+/* ==========================================================================
+   Variant: care (formerly cards-care)
+   ========================================================================== */
+
+main .cards:where(.care).block {
+  /* source: .rows sits 32px / 40px / 48px (mobile/tablet/desktop) below the intro */
+  margin-top: var(--space-xl);
+
+  /*
+   * source: each column ends with a spacer paragraph, leaving 88px / 98px / 108px
+   * (mobile/tablet/desktop) below the buttons to the end of the light-blue band.
+   * The section band already contributes its own padding (32/40/48px).
+   */
+  padding-bottom: 56px;
+  color: #000;
+}
+
+main .cards:where(.care) .cards-list {
+  grid-template-columns: 1fr;
+
+  /* row: source mobile 16px + 48px spacer + 24px between stacked columns */
+  gap: 88px var(--space-m);
+}
+
+/* Transparent cards: no border or background. */
+main .cards:where(.care) .cards-card {
+  display: flex;
+  min-width: 0;
+}
+
+main .cards:where(.care) .cards-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/* icon (40px) inline with the title */
+main .cards:where(.care) .cards-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-s);
+  align-self: stretch;
+  padding-bottom: var(--space-m);
+}
+
+main .cards:where(.care) .cards-card-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+}
+
+main .cards:where(.care) .cards-card-icon picture,
+main .cards:where(.care) .cards-card-icon img,
+main .cards:where(.care) .cards-card-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* source: Gotham 5r title, 16px/24px (mobile), baseline-aligned in a 40px row */
+main .cards:where(.care).block .cards-card-header > :is(h1, h2, h3, h4, h5, h6) {
+  flex: 1 1 0%;
+  margin: 0;
+  padding-top: var(--space-s);
+  color: #000;
+  font-family: var(--font-family, montserrat, sans-serif);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+/* source: span.p3 is 14px (16px >= 1152px) inside a 24px line box */
+main .cards:where(.care).block .cards-card-body > p {
+  margin: 0 0 var(--space-s);
+  color: #000;
+  font-family: var(--font-family, montserrat, sans-serif);
+  font-size: 14px;
+  line-height: 24px;
+}
+
+/* call to action - KP outlined pill (full width on mobile) */
+main .cards:where(.care).block .cards-card-body > .cards-card-cta {
+  align-self: stretch;
+  margin: 0;
+  padding: 0;
+}
+
+main .cards:where(.care).block .cards-card-cta a.button:any-link {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-height: 48px;
+  margin: 0;
+  padding: 11px var(--space-l);
+  border: 1px solid var(--kp-blue, #0074ad);
+  border-radius: var(--kp-radius-pill, 24px);
+  background: var(--kp-pale-blue, #f2f8fb);
+  color: var(--kp-blue, #0074ad);
+  font-family: var(--font-family, montserrat, sans-serif);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.16px;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  transition: background-color 0.24s ease-out, color 0.24s ease-out, border-color 0.24s ease-out;
+}
+
+main .cards:where(.care).block .cards-card-cta a.button:hover,
+main .cards:where(.care).block .cards-card-cta a.button:focus-visible {
+  border-color: var(--kp-blue-dark, #003b71);
+  background: var(--kp-pale-blue, #f2f8fb);
+  color: var(--kp-blue-dark, #003b71);
+  text-decoration: underline;
+}
+
+@media (width >= 600px) {
+  main .cards:where(.care).block {
+    padding-bottom: var(--space-2xl);
+  }
+}
+
+/* source tablet (768-1151px): still one column, 1u = 10px, fit-content buttons */
+@media (width >= 900px) {
+  main .cards:where(.care).block {
+    margin-top: 40px;
+    padding-bottom: 58px;
+  }
+
+  main .cards:where(.care) .cards-list {
+    row-gap: 98px;
+  }
+
+  main .cards:where(.care) .cards-card-header {
+    padding-bottom: 20px;
+  }
+
+  main .cards:where(.care).block .cards-card-header > :is(h1, h2, h3, h4, h5, h6) {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: normal;
+  }
+
+  main .cards:where(.care).block .cards-card-body > p {
+    margin-bottom: 10px;
+  }
+
+  main .cards:where(.care).block .cards-card-body > .cards-card-cta {
+    align-self: flex-start;
+  }
+
+  main .cards:where(.care).block .cards-card-cta a.button:any-link {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+/* source desktop (>= 1152px): three columns, 1u = 12px */
+@media (width >= 1200px) {
+  main .cards:where(.care).block {
+    margin-top: var(--space-2xl);
+    padding-bottom: 60px;
+  }
+
+  main .cards:where(.care) .cards-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  main .cards:where(.care) .cards-card-header {
+    padding-bottom: var(--space-l);
+  }
+
+  main .cards:where(.care).block .cards-card-header > :is(h1, h2, h3, h4, h5, h6) {
+    padding-top: 10px;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.2px;
+  }
+
+  main .cards:where(.care).block .cards-card-body > p {
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+}
+
+/* ==========================================================================
+   Variant: news (formerly cards-news)
+   ========================================================================== */
+
+main .cards:where(.news).block {
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+}
+
+main .cards:where(.news) .cards-list {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 80px;
+}
+
+main .cards:where(.news) .cards-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+}
+
+main .cards:where(.news) .cards-card-image {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border-radius: 50%;
+  line-height: 0;
+}
+
+main .cards:where(.news) .cards-card-image picture {
+  width: 100%;
+  height: 100%;
+}
+
+main .cards:where(.news).block .cards-card-image :is(img, svg, .icon) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+main .cards:where(.news) .cards-card-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+main .cards:where(.news).block .cards-card-body > :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+main .cards:where(.news).block .cards-card-body > :is(h1, h2, h3, h4, h5, h6)::after {
+  content: none;
+}
+
+main .cards:where(.news).block .cards-card-body > p {
+  margin: 0;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+main .cards:where(.news).block .cards-card-body a:any-link {
+  border-radius: 2px;
+  color: var(--kp-blue, #0074ad);
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: underline;
+}
+
+/* KP inline links fill with blue on hover/focus */
+main .cards:where(.news).block .cards-card-body a:hover,
+main .cards:where(.news).block .cards-card-body a:focus-visible {
+  background-color: var(--kp-blue-hover, #0078b3);
+  color: #f0f7fa;
+  text-decoration: none;
+}
+
+main .cards:where(.news).block .cards-card-body a .icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: var(--space-xs);
+  vertical-align: middle;
+}
+
+@media (width >= 900px) {
+  main .cards:where(.news) .cards-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1vw;
+  }
+}
+
+/* ==========================================================================
+   Variant: panels (formerly cards-teaser)
+   ========================================================================== */
+
+main .cards:where(.panels).block {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  color: #000;
+  font-family: var(--font-family);
+}
+
+main .cards:where(.panels) .cards-list {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-xs);
+  padding: var(--space-xs) 0;
+  background-color: rgb(0 0 0 / 5%);
+}
+
+/* panel: text 2/3, illustration 1/3 of the space right of the text inset */
+main .cards:where(.panels) .cards-card {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  align-items: center;
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 0 var(--space-m);
+  background-color: #fff;
+}
+
+main .cards:where(.panels) .cards-card.no-image {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+main .cards:where(.panels) .cards-card-body {
+  min-width: 0;
+  padding-block: 30px;
+}
+
+main .cards:where(.panels).block .cards-card-body > :is(h1, h2, h3, h4, h5, h6) {
+  margin: 20px 0;
+  color: #000;
+  font-family: var(--heading-font-family, var(--font-family));
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+}
+
+main .cards:where(.panels).block .cards-card-body > h2::after {
+  content: none;
+}
+
+main .cards:where(.panels).block .cards-card-body > p {
+  margin: 0;
+  color: #000;
+}
+
+main .cards:where(.panels).block .cards-card-body > :last-child {
+  margin-bottom: 0;
+}
+
+main .cards:where(.panels).block .cards-card-body a.button:any-link {
+  display: inline-block;
+  max-width: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 11px 10px;
+  border: 1px solid var(--kp-blue-hover, #0078b3);
+  border-radius: 100px;
+  background: var(--kp-pale-blue, #f2f8fb);
+  color: var(--kp-blue-dark, #003b71);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  text-align: center;
+  white-space: normal;
+}
+
+main .cards:where(.panels).block .cards-card-body a.button:hover,
+main .cards:where(.panels).block .cards-card-body a.button:focus-visible {
+  border-color: var(--kp-blue-dark, #003b71);
+  color: var(--kp-blue-dark, #003b71);
+  text-decoration: underline;
+}
+
+/* illustration: fills its column, centered, capped at the source's 145px height */
+main .cards:where(.panels) .cards-card-image {
+  min-width: 0;
+  padding-block: 30px;
+  line-height: 0;
+}
+
+main .cards:where(.panels).block .cards-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 145px;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+/* desktop: two panels side by side, separated by the 4px grey rule */
+@media (width >= 900px) {
+  main .cards:where(.panels) .cards-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  main .cards:where(.panels) .cards-card {
+    padding-left: var(--space-l);
+  }
+
+  main .cards:where(.panels) .cards-card-body,
+  main .cards:where(.panels) .cards-card-image {
+    padding-block: 50px;
+  }
+
+  main .cards:where(.panels).block .cards-card-body > :is(h1, h2, h3, h4, h5, h6) {
+    margin-bottom: 25px;
+  }
+
+  main .cards:where(.panels).block .cards-card-body a.button:any-link {
+    padding: 11px 13px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media (width >= 1200px) {
+  main .cards:where(.panels) .cards-card {
+    padding-left: 72px;
+  }
+
+  main .cards:where(.panels) .cards-card-body {
+    padding-block: 68.8px;
+  }
+
+  main .cards:where(.panels) .cards-card-image {
+    padding-block: 34.4px;
+  }
+
+  main .cards:where(.panels).block .cards-card-body > :is(h1, h2, h3, h4, h5, h6) {
+    margin-bottom: 34.4px;
+  }
+
+  main .cards:where(.panels).block .cards-card-body a.button:any-link {
+    padding-inline: 15px;
+  }
+}
+
+/* ==========================================================================
+   Variant: pillars (formerly cards-pillars)
+   ========================================================================== */
+
+main .cards:where(.pillars).block {
+  font-family: var(--font-family);
+}
+
+main .cards:where(.pillars) .cards-list {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+main .cards:where(.pillars) .cards-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0 auto var(--space-xl);
+  text-align: center;
+}
+
+/* illustration – the source Lottie box: full column width x 298px */
+main .cards:where(.pillars) .cards-card-image {
+  width: 100%;
+  line-height: 0;
+}
+
+main .cards:where(.pillars) .cards-card-image picture {
+  width: 100%;
+}
+
+main .cards:where(.pillars).block .cards-card-image :is(img, svg) {
+  display: block;
+  width: 100%;
+  height: 298px;
+  object-fit: contain;
+}
+
+main .cards:where(.pillars) .cards-card-body {
+  width: 100%;
+}
+
+main .cards:where(.pillars).block .cards-card-body > :is(h1, h2, h3, h4, h5, h6) {
+  margin: 6.5px;
+  font-family: var(--font-family);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+/* no illustration: the heading starts the pillar, no reserved space */
+main .cards:where(.pillars).block .cards-card.no-image .cards-card-body > :first-child {
+  margin-top: 0;
+}
+
+main .cards:where(.pillars).block .cards-card-body > h2::after {
+  content: none;
+}
+
+main .cards:where(.pillars).block .cards-card-body > p {
+  max-width: 325px;
+  margin: 0 auto;
+  font-family: var(--font-family);
+  font-size: 13px;
+  line-height: 1.33;
+}
+
+/* the source separates a footnote from its paragraph by one blank line */
+main .cards:where(.pillars).block .cards-card-body > p + p {
+  margin-top: 1.33em;
+}
+
+@media (width >= 600px) {
+  main .cards:where(.pillars) .cards-card {
+    max-width: 426px;
+  }
+}
+
+@media (width >= 900px) {
+  main .cards:where(.pillars) .cards-card {
+    max-width: 475px;
+  }
+
+  main .cards:where(.pillars).block .cards-card-body > :is(h1, h2, h3, h4, h5, h6) {
+    margin: 12.5px;
+  }
+
+  main .cards:where(.pillars).block .cards-card-body > p {
+    max-width: none;
+    font-size: 14px;
+  }
+}
+
+@media (width >= 1200px) {
+  main .cards:where(.pillars) .cards-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 14px;
+  }
+
+  main .cards:where(.pillars) .cards-card {
+    max-width: none;
+  }
+
+  main .cards:where(.pillars).block .cards-card-body > :is(h1, h2, h3, h4, h5, h6) {
+    margin: 17.2px;
+    font-size: 26px;
+  }
+
+  main .cards:where(.pillars).block .cards-card-body > p {
+    max-width: 325px;
+    font-size: 16px;
+  }
+}
+
+/* ==========================================================================
+   Variant: notices (formerly cards-notices)
+   ========================================================================== */
+
+main .cards:where(.notices).block {
+  /* source: trailing 40px margin of the last notice on small screens */
+  padding-bottom: 40px;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+}
+
+main .cards:where(.notices).block .cards-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  /* 32px item padding + 40px item margin on the source */
+  gap: 72px 5px;
+}
+
+main .cards:where(.notices).block .cards-card {
+  box-sizing: border-box;
+  flex: 0 0 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0 30px 0 26px;
+}
+
+main .cards:where(.notices).block .cards-card-body {
+  position: relative;
+}
+
+/* blue bullet dot (source: " ●" glyph rendering 12px, 16px left of the text) */
+main .cards:where(.notices).block .cards-card-body::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: -16px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--kp-blue-hover, #0078b3);
+}
+
+main .cards:where(.notices).block .cards-card-body > p {
+  margin: 0;
+  padding: 0 0 10px;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 13px;
+  line-height: 1.33;
+}
+
+main .cards:where(.notices).block .cards-card-body a:any-link {
+  border-radius: 2px;
+  color: var(--kp-blue, #0074ad);
+  text-decoration: underline;
+}
+
+/* KP inline links fill with blue on hover/focus */
+main .cards:where(.notices).block .cards-card-body a:hover,
+main .cards:where(.notices).block .cards-card-body a:focus-visible {
+  background-color: var(--kp-blue-hover, #0078b3);
+  color: #f0f7fa;
+  text-decoration: none;
+}
+
+@media (width >= 900px) {
+  main .cards:where(.notices).block {
+    padding-bottom: 0;
+  }
+
+  main .cards:where(.notices).block .cards-list {
+    row-gap: 40px;
+  }
+
+  main .cards:where(.notices).block .cards-card {
+    flex-basis: 49%;
+    padding: 0 7% 0 28px;
+  }
+
+  main .cards:where(.notices).block .cards-card-body > p {
+    font-size: 14px;
+  }
+}
+
+@media (width >= 1200px) {
+  main .cards:where(.notices).block .cards-list {
+    row-gap: var(--space-2xl);
+  }
+
+  main .cards:where(.notices).block .cards-card {
+    flex-basis: 33%;
+  }
+
+  main .cards:where(.notices).block .cards-card-body > p {
+    font-size: 16px;
+  }
 }

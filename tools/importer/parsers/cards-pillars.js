@@ -45,6 +45,6 @@ export default function parse(element, { document }) {
   const hasImages = rows.some((r) => r.image);
   const cells = rows.map((r) => (hasImages ? [r.image || '', r.text] : [r.text]));
 
-  const block = WebImporter.Blocks.createBlock(document, { name: 'cards-pillars', cells });
+  const block = WebImporter.Blocks.createBlock(document, { name: 'Cards (Pillars)', cells });
   element.replaceWith(block);
 }
