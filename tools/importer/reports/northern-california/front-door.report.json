@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "url": "https://healthy.kaiserpermanente.org/northern-california/front-door",
+  "path": "northern-california/front-door",
+  "timestamp": "2026-10-07T21:32:44.900Z",
+  "title": "Custom Care & Coverage Just For You | Kaiser Permanente",
+  "template": "northern-california",
+  "blocks": [
+    "columns-overlap",
+    "columns-overlap",
+    "cards-spotlight",
+    "cards-teaser",
+    "cards-pillars",
+    "columns-cta",
+    "cards-news",
+    "cards-notices"
+  ]
+}

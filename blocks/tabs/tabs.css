@@ -1,4 +1,6 @@
-/* Tabs block – Heritage Elite, mobile-first */
+/* Tabs block – KP (healthy.kaiserpermanente.org) style, mobile-first.
+   Sentence-case tabs with a KP-blue bottom indicator. The health-wellness template
+   restyles the same markup as a vertical "View by topic" rail. */
 
 .tabs {
   color: var(--text-color);
@@ -23,26 +25,6 @@ main .section .tabs {
   margin: 0 auto;
 }
 
-/* Section header above tabs */
-.tabs .tabs-wrapper .section h2 {
-  font-family: var(--font-family-serif);
-  font-size: 2.5rem;
-  color: var(--color-rust);
-  margin: 0;
-  text-align: center;
-  letter-spacing: -0.02em;
-}
-
-.tabs .tabs-wrapper .section p {
-  font-family: var(--font-family-serif);
-  font-size: 1.1rem;
-  color: light-dark(var(--color-ink), var(--color-muted));
-  opacity: 0.7;
-  margin-top: 20px;
-  text-align: center;
-  line-height: 1.65;
-}
-
 /* Tab list */
 .tabs .tabs-list {
   display: flex;
@@ -50,12 +32,12 @@ main .section .tabs {
   gap: 0;
   margin: 0 auto var(--space-l);
   max-width: 900px;
-  padding: 0 var(--space-xs) var(--space-xs);
+  padding: 0 var(--space-xs);
   overflow-x: auto;
   scroll-behavior: smooth;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  border-bottom: var(--border-heritage);
+  border-bottom: 1px solid light-dark(var(--color-gray-200), rgb(242 248 251 / 16%));
 }
 
 .tabs .tabs-list::-webkit-scrollbar {
@@ -64,39 +46,38 @@ main .section .tabs {
 
 .tabs .tabs-list button {
   appearance: none;
-  background: transparent;
-  border: 0;
-  border-bottom: 3px solid transparent;
-  color: light-dark(var(--color-ink), var(--color-muted));
-  -webkit-text-fill-color: currentcolor;
-  cursor: pointer;
-  font-family: var(--body-font-family);
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
   margin: 0;
-  padding: 16px 18px;
-  opacity: 0.5;
-  transition: opacity 0.35s, color 0.35s, border-color 0.35s;
+  border: 0;
+  border-bottom: 4px solid transparent;
+  padding: 12px 16px 8px;
+  background: transparent;
+  color: var(--text-color);
+  -webkit-text-fill-color: currentcolor;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
   white-space: nowrap;
+}
+
+.tabs .tabs-list button:hover {
+  color: var(--link-color);
+  border-bottom-color: light-dark(var(--color-gray-300), rgb(242 248 251 / 30%));
 }
 
 .tabs .tabs-list button.is-active,
 .tabs .tabs-list button[aria-selected='true'] {
-  color: light-dark(var(--color-rust), var(--color-rust-bright));
-  -webkit-text-fill-color: light-dark(var(--color-rust), var(--color-rust-bright));
-  opacity: 1;
-  border-bottom-color: light-dark(var(--color-rust), var(--color-rust-bright));
+  color: var(--text-color);
+  font-weight: 500;
+  border-bottom-color: light-dark(var(--kp-blue), var(--color-rust-bright));
 }
 
-.tabs .tabs-list button:hover {
-  opacity: 0.85;
-  color: light-dark(var(--color-rust), var(--color-rust-bright));
-}
-
-.tabs .tabs-list button:focus-visible {
-  outline: 2px solid var(--color-gold);
+/* main-prefixed to win over the global lazy-styles focus ring (offset 3px would be clipped
+   by the scrollable list) */
+main .tabs .tabs-list button:focus-visible {
+  outline: 2px solid var(--link-color);
   outline-offset: -2px;
 }
 
@@ -120,32 +101,30 @@ main .section .tabs {
   padding: var(--space-xl) var(--content-padding-inline);
 }
 
-.tabs .tab .section h2 {
-  font-family: var(--font-family-serif);
-  font-weight: 500;
-  font-size: var(--heading-font-size-m);
-  color: light-dark(var(--color-ink), var(--color-parchment));
-}
-
-/* Override header-section styles that bleed into tab panel content.
-   .tabs .tabs-wrapper .section h2/p rules target ALL sections inside tabs-wrapper
-   (including tab panels), but they were designed only for an optional intro-header
-   section above the tab list. Reset them here for actual tab panel content. */
 .tabs .tab .section p {
-  font-family: var(--body-font-family);
+  margin-top: 0;
   font-size: var(--body-font-size-m);
-  opacity: 1;
+  line-height: 1.65;
   text-align: left;
   color: inherit;
-  margin-top: 0;
-  line-height: 1.65;
 }
 
 .tabs .tab .section h2,
 .tabs .tab .section h3 {
+  margin: 0 0 var(--space-s);
+  font-family: var(--heading-font-family);
+  font-weight: 500;
   text-align: left;
-  color: light-dark(var(--color-ink), var(--color-parchment));
+  color: var(--text-color);
   letter-spacing: normal;
+}
+
+.tabs .tab .section h2 {
+  font-size: var(--heading-font-size-l);
+}
+
+.tabs .tab .section h2 strong {
+  font-weight: 500;
 }
 
 .tabs .tab .section > :is(.default-content, .default-content-wrapper, .block-content) {
@@ -179,15 +158,6 @@ main .section .tabs {
   background: light-dark(transparent, var(--color-card-dark));
 }
 
-/* Columns text — left aligned */
-.tabs .tab .columns h2 {
-  text-align: left;
-}
-
-.tabs .tab .columns p {
-  text-align: left;
-}
-
 .tabs .tab .columns ul {
   text-align: left;
   padding-left: var(--space-l);
@@ -195,34 +165,27 @@ main .section .tabs {
 
 .tabs .tab .columns li {
   margin-bottom: var(--space-s);
-  line-height: 1.6;
+  line-height: var(--body-line-height);
 }
 
 /* iOS/WebKit themed sections */
 .section.light-scheme .tabs .tabs-list > button[role='tab'] {
-  color: var(--color-ink);
-  -webkit-text-fill-color: var(--color-ink);
+  color: var(--kp-navy);
+  -webkit-text-fill-color: var(--kp-navy);
 }
 
 .section.dark-scheme .tabs .tabs-list > button[role='tab'] {
-  color: var(--color-light);
-  -webkit-text-fill-color: var(--color-light);
+  color: var(--kp-pale-blue);
+  -webkit-text-fill-color: var(--kp-pale-blue);
 }
 
-@media (width >= 600px) {
-  .tabs .tabs-wrapper .section h2 {
-    font-size: 3.2rem;
-    letter-spacing: -0.02em;
+@media (prefers-reduced-motion: reduce) {
+  .tabs .tabs-list {
+    scroll-behavior: auto;
   }
 
-  .tabs .tabs-wrapper .section p {
-    font-size: 1.3rem;
-  }
-
-  /* Re-assert body font size for tab panel content — the rule above wins
-     cascade order over the base reset when at tablet+ breakpoint */
-  .tabs .tab .section p {
-    font-size: var(--body-font-size-m);
+  .tabs .tabs-list button {
+    transition: none;
   }
 }
 
@@ -235,24 +198,15 @@ main .section .tabs {
     justify-content: center;
     overflow-x: visible;
     padding: 0 var(--content-padding-inline);
-    gap: var(--space-l);
+    gap: var(--space-s);
     margin-bottom: var(--space-xl);
   }
 
   .tabs .tabs-list button {
-    padding: 22px 45px;
-  }
-
-  .tabs .tabs-wrapper .section h2 {
-    font-size: 3.8rem;
-    letter-spacing: -0.025em;
+    padding-inline: var(--space-l);
   }
 
   .tabs .columns > div > div {
     max-width: 800px;
-  }
-
-  .tabs .tab .columns h2 {
-    font-size: var(--heading-font-size-m);
   }
 }

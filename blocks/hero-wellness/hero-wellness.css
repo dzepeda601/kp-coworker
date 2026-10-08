@@ -1,0 +1,133 @@
+/* Hero (wellness) – KP hero: full-bleed photo with a white text card.
+   Values from the source computed styles (healthy.kaiserpermanente.org .ds-hero).
+   Mobile: photo stacked above the card. >= 900px: card overlaid on the photo. */
+
+/* full bleed: release the section's 1440px / 20px content container */
+main .section.hero-wellness-container > .hero-wellness-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+.hero-wellness {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
+}
+
+.hero-wellness .hero-wellness-media picture {
+  display: block;
+}
+
+/* fixed height reserves the LCP image box (no layout shift) */
+.hero-wellness .hero-wellness-media img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 320px;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: 100% 50%;
+  background-color: #fff;
+}
+
+.hero-wellness .hero-wellness-content {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* bottom padding includes the source's empty CTA row (14px) */
+.hero-wellness .hero-wellness-card {
+  box-sizing: border-box;
+  margin-top: -16px;
+  padding: 24px 24px 38px;
+  border: 1px solid #d3d6dc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 4%);
+  color: var(--kp-navy, #0d1c3d);
+}
+
+.hero-wellness .hero-wellness-card h1 {
+  margin: 0 0 16px;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+}
+
+.hero-wellness .hero-wellness-card p {
+  margin: 0 0 24px;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.hero-wellness .hero-wellness-card > :first-child {
+  margin-top: 0;
+}
+
+.hero-wellness.no-image {
+  padding-top: 16px;
+}
+
+.hero-wellness.no-image .hero-wellness-card {
+  margin-top: 0;
+}
+
+@media (width >= 900px) {
+  .hero-wellness {
+    justify-content: center;
+    min-height: 560px;
+    padding-bottom: 0;
+  }
+
+  .hero-wellness.no-image {
+    padding-top: 0;
+  }
+
+  .hero-wellness .hero-wellness-media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-wellness .hero-wellness-media picture,
+  .hero-wellness .hero-wellness-media img {
+    height: 100%;
+  }
+
+  /* card spans 6 of 12 columns (16px gutter) */
+  .hero-wellness .hero-wellness-card {
+    width: calc((100% - 16px) / 2);
+    margin-top: 0;
+    padding: 16px 16px 26px;
+  }
+
+  .hero-wellness .hero-wellness-card h1 {
+    margin-bottom: 24px;
+  }
+}
+
+@media (width >= 1200px) {
+  .hero-wellness .hero-wellness-card {
+    padding: 32px 32px 42px;
+    border-radius: 24px;
+  }
+
+  .hero-wellness .hero-wellness-card h1 {
+    font-size: 48px;
+    line-height: 54px;
+  }
+
+  .hero-wellness .hero-wellness-card p {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variantName": "columns-cta",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "white-box-on-grey",
+    "density": "compact",
+    "purpose": "cta-banner",
+    "imagePattern": "noimg",
+    "structure": "heading + paragraph + link",
+    "notes": "Centered ~610px white box, 1px border, 16px radius, button right"
+  },
+  "contentPattern": "1 row, 2 cells: [H3 + p] | [link]",
+  "usage": {
+    "pagesUsing": ["https://healthy.kaiserpermanente.org/northern-california/front-door"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-07"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

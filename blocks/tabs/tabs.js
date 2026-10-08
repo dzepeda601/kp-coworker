@@ -114,7 +114,22 @@ function buildTabsUI(tabDefs, tabsContainer, sectionId = '') {
     tabContent.append(panel);
   });
 
-  tabsWrapper.append(tabList, tabContent);
+  // Optional authored label for the tab list (section metadata "Tabs Label" on the first tab)
+  const label = String(tabDefs[0]?.section.dataset?.tabsLabel || '').trim();
+  if (label) {
+    const labelEl = document.createElement('p');
+    labelEl.className = 'tabs-label';
+    labelEl.id = `tabs-label${sectionId ? `-${sectionId}` : `-${tabDefs[0].id}`}`;
+    labelEl.textContent = label;
+    tabList.setAttribute('aria-labelledby', labelEl.id);
+
+    const tabsNav = document.createElement('div');
+    tabsNav.className = 'tabs-nav';
+    tabsNav.append(labelEl, tabList);
+    tabsWrapper.append(tabsNav, tabContent);
+  } else {
+    tabsWrapper.append(tabList, tabContent);
+  }
 
   // Scroll the initially selected tab into view on load
   const activeButton = tabButtons[selectedId];

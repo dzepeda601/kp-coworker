@@ -1,3 +1,4 @@
+/* FAQ block – KP (healthy.kaiserpermanente.org) accordion */
 main .faq {
   max-width: 800px;
   margin: 0 auto;
@@ -8,54 +9,64 @@ main .faq .faq-category {
 }
 
 main .faq .faq-category-heading {
-  font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-s);
-  color: var(--color-brand);
-  margin-bottom: var(--space-m);
+  margin: 0 0 var(--space-s);
   padding-bottom: var(--space-s);
-  border-bottom: var(--border-heritage);
-  letter-spacing: -0.01em;
+  border-bottom: 1px solid light-dark(var(--kp-blue-dark), var(--kp-blue-light));
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-l);
+  font-weight: 500;
+  color: var(--text-color);
 }
 
 main .faq .faq-item {
-  border-bottom: 1px solid light-dark(rgb(0 0 0 / 8%), rgb(255 255 255 / 8%));
+  border-bottom: var(--border-heritage);
 }
 
 main .faq .faq-question {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative;
+  display: block;
   width: 100%;
-  padding: var(--space-m) 0;
+  min-height: 48px;
+  margin: 0;
+  border: 0;
+  padding: var(--space-m) calc(24px + var(--space-m)) var(--space-m) 0;
   background: none;
-  border: none;
-  cursor: pointer;
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  font-weight: 600;
-  color: var(--color-text);
-  text-align: left;
+  font-weight: 500;
   line-height: var(--body-line-height);
-  transition: color 0.3s;
+  color: var(--text-color);
+  text-align: left;
+  cursor: pointer;
 }
 
+/* absolutely positioned so the hover underline does not reach the icon */
 main .faq .faq-question::after {
   content: '+';
-  font-size: var(--body-font-size-xl);
-  font-weight: 300;
-  color: var(--color-accent);
-  flex-shrink: 0;
-  margin-left: var(--space-m);
-  transition: transform 0.35s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 24px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: light-dark(var(--kp-blue-hover), var(--color-rust-bright));
 }
 
 main .faq .faq-question[aria-expanded='true']::after {
   content: '\2212';
-  transform: rotate(180deg);
 }
 
 main .faq .faq-question:hover {
-  color: var(--color-link-hover);
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+main .faq .faq-question:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
 }
 
 main .faq .faq-answer {
@@ -63,26 +74,19 @@ main .faq .faq-answer {
 }
 
 main .faq .faq-answer p {
-  font-family: var(--font-family-serif);
-  font-size: var(--body-font-size-m);
-  line-height: 1.65;
-  color: var(--color-text);
   margin: 0;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
+  color: var(--text-color);
 }
 
 main .faq .faq-empty {
-  font-style: italic;
-  color: var(--color-muted);
-}
-
-@media (width >= 600px) {
-  main .faq .faq-question {
-    font-size: var(--body-font-size-l);
-  }
+  color: light-dark(var(--color-gray-600), var(--color-muted));
 }
 
 @media (width >= 900px) {
-  main .faq .faq-category-heading {
-    font-size: var(--heading-font-size-m);
+  main .faq .faq-question {
+    font-size: var(--body-font-size-l);
   }
 }

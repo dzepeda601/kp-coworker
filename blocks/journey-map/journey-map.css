@@ -1,13 +1,16 @@
-/* Journey map block - mobile first, 600px / 900px breakpoints */
+/* Journey map block – KP step list: white / card-dark step cards with a 4px left status bar
+   (KP blue = current, green = complete), KP-blue progress dots. Mobile first, 900px desktop. */
 
 .journey-map {
   padding: var(--space-s) 0;
+  color: var(--text-color);
 }
 
 .journey-map .journey-map-intro {
-  margin: 0 0 var(--space-s);
-  color: light-dark(var(--color-gray-700), var(--color-gray-300));
-  font-size: var(--body-font-size-s);
+  margin: 0 0 var(--space-m);
+  color: light-dark(var(--color-gray-700), var(--color-muted));
+  font-size: var(--body-font-size-m);
+  line-height: 24px;
 }
 
 .journey-map .journey-map-progress {
@@ -25,8 +28,8 @@
 
 .journey-map .journey-map-progress-meta {
   margin: 0 0 var(--space-s);
-  font-size: var(--body-font-size-xs);
-  color: light-dark(var(--color-gray-600), var(--color-gray-300));
+  color: light-dark(var(--color-gray-600), var(--color-muted));
+  font-size: var(--body-font-size-s);
 }
 
 .journey-map .journey-map-progress-meta:empty {
@@ -59,22 +62,22 @@
   flex: 0 0 20px;
   inline-size: 20px;
   block-size: 20px;
-  border-radius: 999px;
   border: 2px solid light-dark(var(--color-gray-300), var(--color-gray-600));
+  border-radius: 999px;
   display: grid;
   place-items: center;
+  background: light-dark(#fff, var(--color-card-dark));
+  color: #fff;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
-  color: var(--color-light);
-  background: light-dark(var(--color-light), var(--color-gray-900));
   transform: translateY(4px);
-  transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
 .journey-map .journey-map-progress-item.is-active .journey-map-progress-dot {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 4px rgb(197 160 89 / 20%);
+  border-color: light-dark(var(--kp-blue), var(--color-rust-bright));
+  box-shadow: 0 0 0 4px light-dark(rgb(0 116 173 / 20%), rgb(91 184 232 / 25%));
 }
 
 .journey-map .journey-map-progress-item.is-complete .journey-map-progress-dot {
@@ -87,28 +90,24 @@
   gap: var(--space-m);
 }
 
+/* Step card */
 .journey-map .journey-map-step {
-  border: 1px solid light-dark(var(--color-gray-200), var(--color-gray-700));
-  border-radius: 12px;
-  border-inline-start: 3px solid light-dark(var(--color-gray-300), var(--color-gray-600));
-  padding: var(--space-l);
-  background: light-dark(var(--color-light), var(--color-gray-900));
-  transition: border-color 0.35s, box-shadow 0.35s, background-color 0.35s;
-}
-
-.journey-map .journey-map-step.is-active {
-  border-color: light-dark(var(--color-gray-300), var(--color-gray-500));
-  border-inline-start-color: var(--color-accent);
-  box-shadow: 0 4px 16px light-dark(rgb(197 160 89 / 10%), rgb(197 160 89 / 8%));
+  border: var(--border-heritage);
+  border-inline-start: 4px solid light-dark(var(--color-gray-200), rgb(242 248 251 / 16%));
+  border-radius: 8px;
+  padding: var(--space-m);
+  background: light-dark(#fff, var(--color-card-dark));
+  box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
+  transition: border-color 0.2s;
 }
 
 .journey-map .journey-map-step.is-complete {
   border-inline-start-color: var(--color-green-500);
-  background: light-dark(rgb(36 176 50 / 7%), rgb(24 114 32 / 18%));
 }
 
-.journey-map .journey-map-step.is-upcoming {
-  opacity: 0.96;
+/* the open (current) step is also complete; KP blue marks where the reader is */
+.journey-map .journey-map-step.is-active {
+  border-inline-start-color: light-dark(var(--kp-blue), var(--color-rust-bright));
 }
 
 .journey-map .journey-map-step-header {
@@ -132,7 +131,7 @@
 
 .journey-map .journey-map-step-toggle:disabled {
   cursor: default;
-  opacity: 0.55;
+  opacity: 0.6;
 }
 
 .journey-map .journey-map-step-toggle-copy {
@@ -140,11 +139,13 @@
   gap: 2px;
 }
 
+/* chevron – KP blue */
 .journey-map .journey-map-step-toggle-icon {
   inline-size: 10px;
   block-size: 10px;
-  border-right: 2px solid light-dark(var(--color-gray-500), var(--color-gray-300));
-  border-bottom: 2px solid light-dark(var(--color-gray-500), var(--color-gray-300));
+  margin-inline-end: 4px;
+  border-right: 2px solid light-dark(var(--kp-blue), var(--color-rust-bright));
+  border-bottom: 2px solid light-dark(var(--kp-blue), var(--color-rust-bright));
   transform: rotate(45deg);
   transition: transform 0.3s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
 }
@@ -155,17 +156,32 @@
 
 .journey-map .journey-map-step-status {
   margin: 0;
-  font-size: var(--body-font-size-xs);
-  color: light-dark(var(--color-gray-600), var(--color-gray-300));
+  color: light-dark(var(--color-gray-600), var(--color-muted));
+  font-size: var(--body-font-size-s);
 }
 
 .journey-map .journey-map-step-title {
   margin: 0;
-  font-size: var(--heading-font-size-xs);
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-size: var(--body-font-size-l);
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+.journey-map .journey-map-step-toggle:hover:not(:disabled) .journey-map-step-title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
 .journey-map .journey-map-step-content {
   margin-top: var(--space-s);
+}
+
+.journey-map .journey-map-step-content > :first-child {
+  margin-top: 0;
 }
 
 .journey-map .journey-map-step-content :is(ul, ol) {
@@ -175,6 +191,12 @@
 
 .journey-map .journey-map-step-content li {
   margin-block: 0.7em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-map .journey-map-step-toggle-icon {
+    transition: none;
+  }
 }
 
 /* Desktop: progress bar visible, horizontal layout */
@@ -222,6 +244,7 @@
   }
 
   .journey-map .journey-map-step-title {
-    font-size: var(--heading-font-size-s);
+    font-size: var(--body-font-size-xl);
+    line-height: 28px;
   }
 }

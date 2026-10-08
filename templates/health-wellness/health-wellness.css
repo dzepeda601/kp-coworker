@@ -1,0 +1,615 @@
+/* ==========================================================================
+   Health & wellness template – Kaiser Permanente design system
+   Scoped to body.health-wellness (Template: health-wellness) so the rest of
+   the site keeps its own design. Source: healthy.kaiserpermanente.org.
+   Gotham (licensed) is substituted with the project's Montserrat.
+   ========================================================================== */
+
+body.health-wellness {
+  /* KP is light-only; resolve light-dark() tokens to their light values */
+  color-scheme: light;
+
+  /* KP palette */
+  --kp-navy: #0d1c3d;
+  --kp-blue: #0074ad;
+  --kp-blue-dark: #003b71;
+  --kp-pale-blue: #f2f8fb;
+  --kp-blue-hover: #0078b3;
+  --kp-border: #0074ad;
+  --kp-grey-line: #d8d8d8;
+  --kp-radius-pill: 24px;
+
+  /* site token overrides */
+  --background-color: #fff;
+  --text-color: var(--kp-navy);
+  --color-text: var(--kp-navy);
+  --link-color: var(--kp-blue);
+  --link-hover-color: var(--kp-blue);
+  --light-color: var(--kp-pale-blue);
+  --heading-font-family: var(--font-family);
+  --body-font-family: var(--font-family);
+  --body-font-size-m: 16px;
+  --body-line-height: 1.5;
+  --content-padding-inline: 16px;
+
+  background-image: none;
+  color: var(--kp-navy);
+}
+
+/* typography – Gotham Medium headings, Gotham Book body */
+body.health-wellness main :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--kp-navy);
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+}
+
+body.health-wellness main h1 {
+  margin: 0 0 24px;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+}
+
+body.health-wellness main h2 {
+  margin: 16px 0;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+body.health-wellness main h3 {
+  margin: 20px 0;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+/* KP headings have no accent bar (overrides lazy-styles.css h2::after) */
+body.health-wellness main > .section.section h2::after {
+  content: none;
+}
+
+body.health-wellness main p {
+  margin: 0 0 16px;
+}
+
+body.health-wellness strong {
+  font-weight: 700;
+}
+
+@media (width >= 600px) {
+  body.health-wellness main h2 {
+    margin: 20px 0;
+  }
+}
+
+@media (width >= 900px) {
+  body.health-wellness main h1 {
+    font-size: 48px;
+    line-height: 54px;
+  }
+
+  body.health-wellness main h2 {
+    margin: 24px 0;
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  body.health-wellness main h3 {
+    margin: 24px 0;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Theme: front-door – black type and 32px section titles */
+body.health-wellness.front-door main :is(h1, h2, h3, h4, h5, h6),
+body.health-wellness.front-door main p {
+  color: #000;
+}
+
+body.health-wellness.front-door main h2 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+}
+
+@media (width >= 1200px) {
+  body.health-wellness.front-door main h2 {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* links */
+body.health-wellness :where(main) a:any-link {
+  color: var(--kp-blue);
+  text-decoration: none;
+}
+
+/* KP links only underline on hover */
+body.health-wellness :where(main) a:hover,
+body.health-wellness :where(main) a:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: currentcolor;
+}
+
+body.health-wellness :where(main) a:focus-visible,
+body.health-wellness :where(main) button:focus-visible {
+  outline: 2px solid var(--kp-blue);
+  outline-offset: 2px;
+}
+
+/* buttons – KP pill buttons (standalone links in default content) */
+body.health-wellness p.button-container {
+  margin: 0 0 16px;
+}
+
+body.health-wellness a.button:any-link,
+body.health-wellness button.button {
+  min-height: 48px;
+  padding: 11px 24px;
+  border: 1px solid var(--kp-border);
+  border-radius: var(--kp-radius-pill);
+  background: var(--kp-pale-blue);
+  box-shadow: none;
+  color: var(--kp-blue);
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  text-transform: none;
+  transform: none;
+  transition: background-color 0.12s ease-out, color 0.12s ease-out, border-color 0.12s ease-out;
+}
+
+body.health-wellness a.button:any-link::after,
+body.health-wellness button.button::after {
+  content: none;
+}
+
+body.health-wellness a.button:hover,
+body.health-wellness a.button:focus-visible,
+body.health-wellness button.button:hover,
+body.health-wellness button.button:focus-visible {
+  border-color: var(--kp-border);
+  background: var(--kp-pale-blue);
+  box-shadow: none;
+  color: var(--kp-blue);
+  text-decoration: underline;
+  transform: none;
+}
+
+/* a run of standalone links (e.g. "Jump to section") wraps as a row of pills */
+body.health-wellness main .default-content-wrapper:has(> p.button-container + p.button-container) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+body.health-wellness main .default-content-wrapper:has(> p.button-container + p.button-container) > :not(p.button-container) {
+  flex: 1 0 100%;
+}
+
+body.health-wellness main .default-content-wrapper:has(> p.button-container + p.button-container) > h2 {
+  margin-bottom: 12px;
+}
+
+body.health-wellness main .default-content-wrapper:has(> p.button-container + p.button-container) > p.button-container {
+  margin: 0;
+}
+
+body.health-wellness main .default-content-wrapper:has(> p.button-container + p.button-container) a.button:any-link {
+  background: #fff;
+  color: var(--kp-blue-dark);
+}
+
+body.health-wellness main .default-content-wrapper:has(> p.button-container + p.button-container) a.button:is(:hover, :focus-visible) {
+  border-color: var(--kp-blue-dark);
+  background: var(--kp-blue-hover);
+  color: #fff;
+}
+
+/* "Connecting to care" module – KP renders this shared module in black
+   with an 18px intro (its tighter band top is set after the light-blue rules) */
+body.health-wellness main > .section:has(.cards-care) > .default-content-wrapper :is(h2, p) {
+  color: #000;
+}
+
+body.health-wellness main > .section:has(.cards-care) > .default-content-wrapper p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/* icon + section title (sun, cogs, article icons) on one row */
+body.health-wellness main .default-content-wrapper:has(> p:first-child > picture:only-child) {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: center;
+  column-gap: 8px;
+}
+
+body.health-wellness main .default-content-wrapper:has(> p:first-child > picture:only-child) > * {
+  grid-column: 1 / -1;
+}
+
+body.health-wellness main .default-content-wrapper:has(> p:first-child > picture:only-child) > p:first-child {
+  grid-column: 1;
+  margin: 0;
+  line-height: 0;
+}
+
+body.health-wellness main .default-content-wrapper:has(> p:first-child > picture:only-child) > p:first-child img {
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+body.health-wellness main .default-content-wrapper:has(> p:first-child > picture:only-child) > p:first-child + h2 {
+  grid-column: 2;
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  body.health-wellness main .default-content-wrapper:has(> p:first-child > picture:only-child) > p:first-child + h2 {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+  }
+
+  /* "Explore library" button sits at the end of the title row */
+  body.health-wellness main .default-content-wrapper:has(> p:first-child > picture:only-child) {
+    grid-template-columns: 40px 1fr auto;
+  }
+
+  body.health-wellness main .default-content-wrapper:has(> p:first-child > picture:only-child) > h2 + p.button-container {
+    grid-column: 3;
+    grid-row: 1;
+    margin: 0;
+  }
+}
+
+/* layout – KP 1440px container with 16px (mobile) / 20px gutters */
+body.health-wellness main > .section > div {
+  box-sizing: border-box;
+  max-width: 1440px;
+  padding: 0 16px;
+}
+
+@media (width >= 600px) {
+  body.health-wellness main > .section > div {
+    padding: 0 20px;
+  }
+}
+
+body.health-wellness main > .section {
+  padding-block: 24px;
+}
+
+body.health-wellness main > .section:first-child {
+  padding-block: 0;
+}
+
+body.health-wellness main > .section > .default-content-wrapper + div {
+  margin-top: 24px;
+}
+
+/* a "view all" link following a block is centered below it, as a white pill */
+body.health-wellness main .section > [class$="-wrapper"]:not(.default-content-wrapper) + .default-content-wrapper {
+  margin-top: 24px;
+  text-align: center;
+}
+
+body.health-wellness main .section > [class$="-wrapper"]:not(.default-content-wrapper) + .default-content-wrapper a.button:any-link {
+  padding: 2px 16px;
+  border-color: var(--kp-blue-hover);
+  border-radius: 26px;
+  background: #fff;
+  color: var(--kp-blue-dark);
+  line-height: 48px;
+}
+
+/* section-metadata style=light-blue – KP blue-5 band */
+body.health-wellness main > .section.light-blue {
+  margin: 24px 0;
+  padding-block: 32px;
+  background-color: var(--kp-pale-blue);
+}
+
+@media (width >= 600px) {
+  body.health-wellness main > .section.light-blue {
+    padding-block: 40px;
+  }
+}
+
+@media (width >= 1200px) {
+  body.health-wellness main > .section.light-blue {
+    padding-block: 48px;
+  }
+}
+
+/* "Connecting to care" band starts closer to its heading */
+body.health-wellness main > .section.light-blue:has(.cards-care) {
+  margin-top: 56px;
+  padding-top: 24px;
+}
+
+@media (width >= 600px) {
+  body.health-wellness main > .section.light-blue:has(.cards-care) {
+    padding-top: 26px;
+  }
+}
+
+@media (width >= 1200px) {
+  body.health-wellness main > .section.light-blue:has(.cards-care) {
+    padding-top: 36px;
+  }
+}
+
+/* section rhythm tuned to the source page */
+body.health-wellness main > .section.hero-wellness-container + .section {
+  padding-block: 48px;
+}
+
+body.health-wellness main > .section.light-blue:has(.columns-topics) {
+  margin-bottom: 36px;
+}
+
+body.health-wellness main > .section.cards-tools-container {
+  padding-bottom: 56px;
+}
+
+/* Theme: front-door – KP regional front-door pages use a 1280px content column */
+body.health-wellness.front-door main > .section > div {
+  max-width: 1320px;
+}
+
+/* Theme: front-door – section rhythm: 32/40/48px around sections and from a heading to its content */
+body.health-wellness.front-door main > .section:not(.grey, :first-child) {
+  padding-block: 32px;
+}
+
+body.health-wellness.front-door main > .section > .default-content-wrapper + div {
+  margin-top: 32px;
+}
+
+@media (width >= 900px) {
+  body.health-wellness.front-door main > .section:not(.grey, :first-child) {
+    padding-block: 40px;
+  }
+
+  body.health-wellness.front-door main > .section > .default-content-wrapper + div {
+    margin-top: 40px;
+  }
+}
+
+@media (width >= 1200px) {
+  body.health-wellness.front-door main > .section:not(.grey, :first-child) {
+    padding-block: 48px;
+  }
+
+  body.health-wellness.front-door main > .section > .default-content-wrapper + div {
+    margin-top: 48px;
+  }
+}
+
+/* Theme: front-door – the encyclopedia teaser band sits flush between its neighbours */
+body.health-wellness.front-door main > .section.cards-teaser-container {
+  padding-block: 0;
+}
+
+/* "View by topic" rail – the site's section-based tabs around cards-articles */
+body.health-wellness main > .section[data-tab-id] ~ .section[data-tab-id] {
+  display: none; /* until the tabs are built, show only the first topic */
+}
+
+body.health-wellness main > .section.tabs:has(.cards-articles) {
+  padding-block: 24px;
+}
+
+body.health-wellness main .section.tabs:has(.cards-articles) .tabs-wrapper {
+  display: grid;
+  gap: 12px;
+  color: var(--kp-navy);
+}
+
+body.health-wellness main .section.tabs:has(.cards-articles) .tabs-label {
+  margin: 0 0 10px;
+  color: var(--kp-navy);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+body.health-wellness main .section.tabs:has(.cards-articles) .tabs-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+}
+
+body.health-wellness main .section.tabs:has(.cards-articles) .tabs-list button {
+  margin: 0;
+  padding: 12px 0 12px 15px;
+  border: 0;
+  border-left: 5px solid transparent;
+  border-radius: 0;
+  background: none;
+  color: var(--kp-navy);
+  -webkit-text-fill-color: currentcolor;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: normal;
+  text-align: left;
+  text-transform: none;
+  opacity: 1;
+  cursor: pointer;
+}
+
+body.health-wellness main .section.tabs:has(.cards-articles) .tabs-list button:hover {
+  color: var(--kp-navy);
+}
+
+body.health-wellness main .section.tabs:has(.cards-articles) .tabs-list button[aria-selected='true'] {
+  border-left-color: var(--kp-blue-hover);
+  color: var(--kp-navy);
+  -webkit-text-fill-color: currentcolor;
+  font-weight: 500;
+}
+
+body.health-wellness main .section.tabs:has(.cards-articles) .tabs-list button:focus-visible {
+  outline: 2px solid var(--kp-blue);
+  outline-offset: 2px;
+}
+
+body.health-wellness main .section.tabs:has(.cards-articles) .tabs-content {
+  margin: 0;
+  padding: 0;
+}
+
+body.health-wellness main .section.tabs:has(.cards-articles) .tab .section p.button-container {
+  text-align: center;
+}
+
+body.health-wellness main .section.tabs:has(.cards-articles) .tab .section {
+  margin: 0;
+  padding: 0;
+}
+
+body.health-wellness main .section.tabs:has(.cards-articles) .tab .section > div {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (width >= 900px) {
+  body.health-wellness main .section.tabs:has(.cards-articles) .tabs-wrapper {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    align-items: start;
+    gap: 16px;
+  }
+
+  body.health-wellness main .section.tabs:has(.cards-articles) .tabs-label {
+    padding-left: 10px;
+    font-size: 16px;
+  }
+
+  body.health-wellness main .section.tabs:has(.cards-articles) .tabs-list {
+    padding-left: 10px;
+  }
+
+  body.health-wellness main .section.tabs:has(.cards-articles) .tabs-list button {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+/* section-metadata style=grey – KP gray band (front door) */
+body.health-wellness main > .section.grey {
+  margin: 0;
+  padding-block: 32px;
+  background-color: #f7f7f7;
+}
+
+/* a grey band opening the page starts at its content, below a white gap */
+body.health-wellness main > .section.grey:first-child {
+  margin-top: 32px;
+  padding-top: 0;
+}
+
+@media (width >= 900px) {
+  body.health-wellness main > .section.grey {
+    padding-block: 40px;
+  }
+
+  body.health-wellness main > .section.grey:first-child {
+    margin-top: 48px;
+    padding-top: 0;
+  }
+}
+
+@media (width >= 1200px) {
+  body.health-wellness main > .section.grey {
+    padding-block: 48px;
+  }
+
+  body.health-wellness main > .section.grey:first-child {
+    padding-top: 0;
+  }
+}
+
+/* full-bleed bands (100vw) must not cause horizontal scroll where scrollbars take space */
+body.health-wellness main {
+  overflow-x: clip;
+}
+
+/* Theme: front-door – centred intro above the value pillars ("Your health. Our cause.") */
+body.health-wellness.front-door main > .section:has(.cards-pillars) > .default-content-wrapper:first-child {
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+body.health-wellness.front-door main > .section:has(.cards-pillars) > .default-content-wrapper:first-child h2 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+}
+
+body.health-wellness.front-door main > .section:has(.cards-pillars) > .default-content-wrapper:first-child p {
+  max-width: 310px;
+  margin: 20px auto;
+  font-size: 14px;
+  line-height: 1.33;
+}
+
+body.health-wellness.front-door main > .section:has(.cards-pillars) > .default-content-wrapper:first-child + div {
+  margin-top: 0;
+}
+
+@media (width >= 900px) {
+  body.health-wellness.front-door main > .section:has(.cards-pillars) > .default-content-wrapper:first-child {
+    padding-bottom: 25px;
+  }
+
+  body.health-wellness.front-door main > .section:has(.cards-pillars) > .default-content-wrapper:first-child p {
+    max-width: 500px;
+    margin: 16px auto;
+    font-size: 16px;
+  }
+}
+
+@media (width >= 1200px) {
+  body.health-wellness.front-door main > .section:has(.cards-pillars) > .default-content-wrapper:first-child {
+    padding-bottom: 34px;
+  }
+
+  body.health-wellness.front-door main > .section:has(.cards-pillars) > .default-content-wrapper:first-child h2 {
+    font-size: 32px;
+  }
+
+  body.health-wellness.front-door main > .section:has(.cards-pillars) > .default-content-wrapper:first-child p {
+    max-width: 310px;
+    margin: 20px auto;
+    font-size: 20px;
+  }
+}
+
+/* Theme: front-door – a heading-led section right after a grey band uses the band's spacing */
+body.health-wellness.front-door main > .section.grey + .section:has(> .default-content-wrapper:first-child > h2:first-child) {
+  padding-top: 0;
+}

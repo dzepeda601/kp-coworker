@@ -2,171 +2,262 @@ main .networth-calculator {
   max-width: var(--grid-container-width);
   margin: 0 auto;
   padding: var(--space-m) var(--content-padding-inline);
+  color: var(--text-color);
 }
 
+/* Disclosures: "How to read this calculator" + "Optional details" */
 main .networth-calculator .networth-calculator-legend {
-  margin: 0 0 var(--space-s);
-  border: 1px dashed light-dark(var(--color-gray-300), var(--color-gray-600));
-  border-radius: 10px;
-  padding: 6px 8px;
+  margin: 0 0 var(--space-m);
+  border: var(--border-heritage);
+  border-radius: 8px;
+  padding: 12px var(--space-m);
+  background: light-dark(#fff, var(--color-card-dark));
 }
 
-main .networth-calculator .networth-calculator-legend summary {
+main .networth-calculator .networth-calculator-optional {
+  border: var(--border-heritage);
+  border-radius: 4px;
+  padding: 12px var(--space-m);
+  background: light-dark(#fff, rgb(242 248 251 / 4%));
+}
+
+main .networth-calculator .networth-calculator-legend summary,
+main .networth-calculator .networth-calculator-optional summary {
   cursor: pointer;
-  font-size: var(--body-font-size-s);
-  font-weight: 600;
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  color: var(--link-color);
+}
+
+main .networth-calculator .networth-calculator-legend summary:hover,
+main .networth-calculator .networth-calculator-optional summary:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+main .networth-calculator .networth-calculator-legend summary:focus-visible,
+main .networth-calculator .networth-calculator-optional summary:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+main .networth-calculator .networth-calculator-optional[open] summary {
+  margin-bottom: var(--space-m);
 }
 
 main .networth-calculator .networth-calculator-legend ul {
-  margin: var(--space-xs) 0 0;
-  padding-inline-start: 18px;
+  margin: var(--space-s) 0 0;
+  padding-inline-start: 20px;
   display: grid;
-  gap: 4px;
+  gap: var(--space-xs);
   font-size: var(--body-font-size-s);
-  color: light-dark(var(--color-gray-700), var(--color-gray-300));
+  color: light-dark(var(--color-gray-700), var(--color-muted));
 }
 
 main .networth-calculator .networth-calculator-layout {
   display: grid;
-  gap: var(--space-s);
+  gap: var(--space-m);
 }
 
+/* Input panel – KP pale-blue band */
 main .networth-calculator .networth-calculator-form {
   display: grid;
-  gap: var(--space-xs);
+  gap: var(--space-m);
   border: var(--border-heritage);
-  border-radius: 16px;
-  padding: var(--space-m);
-  background: light-dark(var(--color-parchment), var(--color-card-dark));
+  border-radius: var(--border-radius-heritage);
+  padding: var(--space-l) var(--space-m);
+  background: var(--light-color);
 }
 
 main .networth-calculator .networth-calculator-group {
   display: grid;
-  gap: var(--space-xs);
+  gap: var(--space-m);
 }
 
 main .networth-calculator .networth-calculator-row {
   display: grid;
-  gap: 4px;
+  gap: 6px;
 }
 
 main .networth-calculator .networth-calculator-label {
-  font-size: var(--body-font-size-s);
-  font-weight: 600;
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 main .networth-calculator .networth-calculator-tip {
-  color: light-dark(var(--color-gray-600), var(--color-gray-300));
+  font-weight: 700;
+  color: light-dark(var(--kp-blue-hover), var(--color-rust-bright));
   cursor: help;
 }
 
 main .networth-calculator .networth-calculator-input-wrap {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-s);
 }
 
+/* KP form fields */
 main .networth-calculator input[type='number'],
 main .networth-calculator input[type='text'] {
+  box-sizing: border-box;
   inline-size: 100%;
-  border: 1px solid light-dark(var(--color-gray-300), var(--color-gray-600));
-  border-radius: 8px;
-  padding: 8px 10px;
+  min-inline-size: 0;
+  min-block-size: 48px;
+  border: 1px solid var(--color-gray-500);
+  border-radius: 4px;
+  padding: 10px 12px;
   font: inherit;
-  color: inherit;
-  background: light-dark(var(--color-light), rgb(25 29 35));
+  font-size: var(--body-font-size-m);
+  color: var(--text-color);
+  background: light-dark(#fff, var(--color-card-dark));
+}
+
+main .networth-calculator input[type='number']:focus-visible,
+main .networth-calculator input[type='text']:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 0;
+  border-color: var(--link-color);
 }
 
 main .networth-calculator input[type='range'] {
   inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: 32px;
+  accent-color: light-dark(var(--kp-blue), var(--color-rust-bright));
+  cursor: pointer;
+}
+
+main .networth-calculator input[type='range']:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
 }
 
 main .networth-calculator .networth-calculator-suffix {
+  flex-shrink: 0;
   white-space: nowrap;
   font-size: var(--body-font-size-s);
-  color: light-dark(var(--color-gray-600), var(--color-gray-300));
+  color: light-dark(var(--color-gray-700), var(--color-muted));
 }
 
 main .networth-calculator .networth-calculator-toggle {
   grid-template-columns: 1fr auto;
   align-items: center;
-  border: 1px dashed light-dark(var(--color-gray-300), var(--color-gray-600));
-  border-radius: 8px;
-  padding: 6px 8px;
+  gap: var(--space-m);
+  min-block-size: 48px;
+  box-sizing: border-box;
+  border: var(--border-heritage);
+  border-radius: 4px;
+  padding: var(--space-s) var(--space-m);
+  background: light-dark(#fff, rgb(242 248 251 / 4%));
+  cursor: pointer;
 }
 
 main .networth-calculator .networth-calculator-toggle input {
-  inline-size: 18px;
-  block-size: 18px;
+  inline-size: 20px;
+  block-size: 20px;
+  margin: 0;
+  accent-color: var(--link-color);
+  cursor: pointer;
+}
+
+main .networth-calculator .networth-calculator-toggle input:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
 }
 
 main .networth-calculator .networth-calculator-subtitle {
-  margin: var(--space-xs) 0 0;
-  font-size: var(--heading-font-size-xs);
+  margin: var(--space-s) 0 0;
+  padding-top: var(--space-m);
+  border-top: var(--border-heritage);
+  font-size: var(--heading-font-size-l);
+  font-weight: 500;
+  color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
 }
 
-main .networth-calculator .networth-calculator-optional {
-  border: 1px dashed light-dark(var(--color-gray-300), var(--color-gray-600));
-  border-radius: 10px;
-  padding: 6px 8px;
+main .networth-calculator .networth-calculator-group > .networth-calculator-subtitle:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
 }
 
-main .networth-calculator .networth-calculator-optional summary {
-  cursor: pointer;
-  font-size: var(--body-font-size-s);
-  font-weight: 600;
-}
-
-main .networth-calculator .networth-calculator-optional[open] summary {
-  margin-bottom: var(--space-xs);
-}
-
+/* Results – KP cards */
 main .networth-calculator .networth-calculator-output {
   display: grid;
-  gap: var(--space-xs);
+  gap: var(--space-m);
+  min-inline-size: 0;
 }
 
 main .networth-calculator .networth-calculator-metric {
-  border: 1px solid light-dark(var(--color-gray-200), rgb(245 242 237 / 10%));
-  border-radius: 12px;
-  padding: var(--space-m);
-  background: light-dark(var(--color-light), var(--color-card-dark));
-  transition: border-color 0.3s, box-shadow 0.3s;
+  min-inline-size: 0;
+  border: var(--border-heritage);
+  border-radius: var(--border-radius-heritage);
+  padding: var(--space-l);
+  background: light-dark(#fff, var(--color-card-dark));
+  box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
 }
 
-main .networth-calculator .networth-calculator-metric:hover {
-  border-color: light-dark(var(--color-gold), rgb(197 160 89 / 35%));
-  box-shadow: 0 8px 24px light-dark(rgb(161 79 43 / 10%), rgb(197 160 89 / 8%));
+/* headline result (net worth) – pale-blue band with a KP-blue indicator */
+main .networth-calculator .networth-calculator-metric:first-child {
+  border-inline-start: 4px solid light-dark(var(--kp-blue), var(--color-rust-bright));
+  background: var(--light-color);
 }
 
 main .networth-calculator .networth-calculator-metric h3 {
-  margin: 0 0 6px;
-  font-size: var(--heading-font-size-xs);
+  margin: 0 0 var(--space-s);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 500;
+  line-height: 1.4;
+  color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
 }
 
 main .networth-calculator .networth-calculator-metric-value {
-  margin: 0 0 6px;
-  font-size: clamp(20px, 1.8vw, 28px);
+  margin: 0 0 var(--space-s);
+  font-family: var(--heading-font-family);
+  font-size: clamp(24px, 2vw, 32px);
+  font-weight: 500;
   line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 main .networth-calculator .networth-calculator-metric-note {
   margin: 0;
   font-size: var(--body-font-size-s);
-  color: light-dark(var(--color-gray-700), var(--color-gray-300));
+  color: light-dark(var(--color-gray-700), var(--color-muted));
+}
+
+main .networth-calculator .networth-calculator-actions-card {
+  grid-column: 1 / -1;
 }
 
 main .networth-calculator .networth-calculator-actions {
   margin: 0;
-  padding-inline-start: 18px;
+  padding-inline-start: 20px;
   display: grid;
-  gap: 6px;
-  font-size: var(--body-font-size-s);
+  gap: var(--space-s);
+  font-size: var(--body-font-size-m);
+}
+
+main .networth-calculator .networth-calculator-actions li::marker {
+  color: light-dark(var(--kp-blue), var(--color-rust-bright));
+}
+
+@media (width >= 600px) {
+  main .networth-calculator .networth-calculator-form {
+    padding: var(--space-l);
+  }
+
+  main .networth-calculator .networth-calculator-output {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
 }
 
 @media (width >= 900px) {
   main .networth-calculator .networth-calculator-layout {
-    grid-template-columns: minmax(300px, 430px) 1fr;
+    grid-template-columns: minmax(300px, 430px) minmax(0, 1fr);
+    gap: var(--space-l);
     align-items: start;
   }
 }

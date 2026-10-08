@@ -1,0 +1,292 @@
+/* Columns (overlap) – KP front-door "welcome" features.
+   Cell order sets the variant (classes added in JS):
+   - .image-left  (image cell first): KP "welcome hero" – full-bleed photo with the
+     suggestions card stacked below it on small screens; on desktop the photo spans
+     10 columns and the card overlaps its right edge, vertically centered.
+   - .image-right (text cell first): KP "welcome story" – one white card (photo on
+     top) on mobile; from tablet the photo spans the right 9 columns and the card
+     overlaps its left edge, vertically centered. */
+main .columns-overlap.block {
+  color: #000;
+  font-family: var(--font-family);
+}
+
+/* consecutive overlap blocks (welcome hero, then welcome story) */
+main .section > .columns-overlap-wrapper + .columns-overlap-wrapper {
+  margin-top: 32px;
+}
+
+main .columns-overlap .columns-overlap-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* photo: always above the card on small screens, whatever the authored cell order */
+main .columns-overlap .columns-overlap-image {
+  order: -1;
+  line-height: 0;
+}
+
+main .columns-overlap .columns-overlap-image picture {
+  display: block;
+}
+
+main .columns-overlap.block .columns-overlap-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+/* white card */
+main .columns-overlap .columns-overlap-text {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  min-width: 0;
+  border: 1px solid rgb(0 0 0 / 10%);
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
+}
+
+main .columns-overlap .no-image .columns-overlap-text {
+  padding: 16px;
+}
+
+/* typography */
+main .columns-overlap.block .columns-overlap-text > :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0 0 15px;
+  color: #000;
+  font-family: var(--font-family);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+}
+
+/* "Today's suggestions:" – the H1 is a small blue label above the pills */
+main .columns-overlap.block .columns-overlap-text > h1 {
+  color: var(--kp-blue-dark, #003b71);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+main .columns-overlap.block .columns-overlap-text > h2::after {
+  content: none;
+}
+
+main .columns-overlap.block .columns-overlap-text > p {
+  margin: 0 0 15px;
+  color: #000;
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.01em;
+}
+
+/* pill links wrap as a row (each pill keeps KP's trailing right/bottom margin) */
+main .columns-overlap .columns-overlap-links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+main .columns-overlap.block .columns-overlap-links > p.button-container {
+  margin: 0 8px 8px 0;
+}
+
+main .columns-overlap.block .columns-overlap-links a.button:any-link {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 44px;
+  margin: 0;
+  padding: 11px 10px;
+  border: 1px solid var(--kp-blue-hover, #0078b3);
+  border-radius: var(--kp-radius-pill, 24px);
+  background: #f0f7fa;
+  color: var(--kp-blue-dark, #003b71);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+}
+
+main .columns-overlap.block .columns-overlap-links a.button:hover,
+main .columns-overlap.block .columns-overlap-links a.button:focus-visible {
+  border-color: var(--kp-blue-dark, #003b71);
+  background: #f0f7fa;
+  color: var(--kp-blue-dark, #003b71);
+  text-decoration: underline;
+}
+
+/* welcome hero (photo left): edge-to-edge photo, card overlaps its bottom */
+main .columns-overlap .image-left .columns-overlap-image {
+  margin-inline: -16px;
+}
+
+main .columns-overlap.block .image-left .columns-overlap-image img {
+  aspect-ratio: 50 / 33;
+}
+
+main .columns-overlap .image-left .columns-overlap-text {
+  margin-top: -80px;
+  padding: 15px 8px 32px 16px;
+}
+
+/* welcome story (photo right): photo and text share one white card */
+main .columns-overlap .image-right .columns-overlap-image {
+  padding: 16px;
+  border: 1px solid rgb(0 0 0 / 10%);
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  background: #fff;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
+}
+
+main .columns-overlap .image-right .columns-overlap-text {
+  padding: 0 16px 13px;
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+  box-shadow: none;
+}
+
+main .columns-overlap.block .image-right .columns-overlap-text > :first-child {
+  margin-top: 6.5px;
+}
+
+@media (width >= 600px) {
+  main .section > .columns-overlap-wrapper + .columns-overlap-wrapper {
+    margin-top: 40px;
+  }
+
+  main .columns-overlap.block .columns-overlap-links > p.button-container {
+    margin: 0 12px 12px 0;
+  }
+
+  main .columns-overlap.block .columns-overlap-links a.button:any-link {
+    min-height: 48px;
+    padding: 11px 13px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  main .columns-overlap .image-left .columns-overlap-image {
+    margin-inline: -20px;
+  }
+
+  main .columns-overlap .image-left .columns-overlap-text {
+    margin-top: -100px;
+    padding: 25px 6px 15px 16px;
+  }
+
+  /* welcome story: 12-column overlap from tablet up */
+  main .columns-overlap .image-right {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 16px;
+    align-items: center;
+  }
+
+  main .columns-overlap .image-right > * {
+    grid-row: 1;
+  }
+
+  main .columns-overlap .image-right .columns-overlap-image {
+    grid-column: 4 / -1;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: none;
+  }
+
+  main .columns-overlap .image-right .columns-overlap-text {
+    grid-column: 1 / span 5;
+    padding: 25px 16px;
+    border-top: 1px solid rgb(0 0 0 / 10%);
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
+  }
+
+  main .columns-overlap.block .image-right .columns-overlap-text > :first-child {
+    margin-top: 8px;
+  }
+}
+
+/* desktop: KP 12-column grid; the welcome hero's grid carries two extra 0px tracks */
+@media (width >= 1200px) {
+  main .section > .columns-overlap-wrapper + .columns-overlap-wrapper {
+    margin-top: 48px;
+  }
+
+  main .columns-overlap .image-left {
+    grid-template-columns: repeat(12, minmax(0, 1fr)) 0 0;
+    column-gap: 16px;
+    align-items: center;
+  }
+
+  main .columns-overlap .image-left > * {
+    grid-row: 1;
+  }
+
+  main .columns-overlap .image-left .columns-overlap-image {
+    grid-column: 1 / span 10;
+    overflow: hidden;
+    margin-inline: 0;
+    border-radius: 4px;
+  }
+
+  main .columns-overlap .image-left .columns-overlap-text {
+    grid-column: 8 / -1;
+    margin: 0;
+    padding: 34.4px 20px 22.4px 32px;
+  }
+
+  main .columns-overlap.block .columns-overlap-links a.button:any-link {
+    padding: 11px 15px;
+  }
+
+  main .columns-overlap.block .columns-overlap-text > h1 {
+    margin-bottom: 34.4px;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  main .columns-overlap .image-right .columns-overlap-image {
+    box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
+  }
+
+  main .columns-overlap .image-right .columns-overlap-text {
+    padding: 48px 32px;
+  }
+
+  main .columns-overlap.block .image-right .columns-overlap-text > :first-child {
+    margin-top: 17.2px;
+  }
+
+  main .columns-overlap.block .columns-overlap-text > :is(h2, h3, h4, h5, h6) {
+    margin-bottom: 34.4px;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+  }
+
+  main .columns-overlap.block .columns-overlap-text > p {
+    margin-bottom: 34.4px;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  main .columns-overlap .no-image .columns-overlap-text {
+    grid-column: 1 / -1;
+    padding: 48px 32px;
+  }
+}

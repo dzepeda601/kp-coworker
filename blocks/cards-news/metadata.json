@@ -1,0 +1,22 @@
+{
+  "variantName": "cards-news",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "news-links",
+    "imagePattern": "side-icon-circle",
+    "structure": "icon + heading + link",
+    "columns": 2,
+    "notes": "Blue circle icon left, bold navy title, small underlined external link; no card chrome"
+  },
+  "contentPattern": "N rows x 2 cells: icon | [H3 title + link]",
+  "usage": {
+    "pagesUsing": ["https://healthy.kaiserpermanente.org/northern-california/front-door"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-07"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

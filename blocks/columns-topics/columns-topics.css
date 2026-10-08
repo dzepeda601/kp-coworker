@@ -1,0 +1,177 @@
+/* Columns (topics) – KP "Browse these topics" band: photo | heading + topic pills + show-more toggle.
+   Values from source computed styles (healthy.kaiserpermanente.org/health-wellness). */
+.columns-topics {
+  /* pill spacing; the toggle sits two gaps below the last pill row */
+  --columns-topics-gap: 8px;
+}
+
+.columns-topics .columns-topics-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px 16px;
+}
+
+/* image – natural ratio, square corners (overrides the global 16/9 cover rule) */
+.columns-topics .columns-topics-img-col picture,
+.columns-topics .columns-topics-img-col img {
+  display: block;
+  width: 100%;
+}
+
+.columns-topics .columns-topics-img-col img {
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: fill;
+  border-radius: 0;
+}
+
+/* heading */
+main .columns-topics.block h2 {
+  margin: 16px 0 32px;
+  color: #000;
+  font-family: var(--font-family);
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+/* topic pills */
+.columns-topics .columns-topics-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--columns-topics-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns-topics .columns-topics-list li {
+  margin: 0;
+}
+
+.columns-topics .columns-topics-list li[hidden] {
+  display: none;
+}
+
+main .columns-topics.block a.columns-topics-pill:any-link {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  border: 1px solid var(--kp-blue, #0074ad);
+  border-radius: var(--kp-radius-pill, 24px);
+  background-color: var(--kp-pale-blue, #f2f8fb);
+  color: var(--kp-blue-dark, #003b71);
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: background-color 0.12s ease-out, color 0.12s ease-out, border-color 0.12s ease-out;
+}
+
+main .columns-topics.block a.columns-topics-pill:hover,
+main .columns-topics.block a.columns-topics-pill:focus-visible {
+  border-color: var(--kp-blue-dark, #003b71);
+  background-color: #0078b3;
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* show more / show less toggle */
+.columns-topics .columns-topics-toggle-wrapper {
+  margin: calc(var(--columns-topics-gap) * 2) 0 var(--columns-topics-gap);
+}
+
+.columns-topics .columns-topics-toggle {
+  display: inline-block;
+  margin: 0;
+  padding: 8px 10px 9px 0;
+  border: 0;
+  background: none;
+  color: var(--kp-blue, #0074ad);
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.columns-topics .columns-topics-toggle:hover,
+.columns-topics .columns-topics-toggle:focus-visible {
+  color: var(--kp-blue-dark, #003b71);
+}
+
+.columns-topics .columns-topics-toggle::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: top;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 6v12M6 12h12' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / 24px 24px no-repeat;
+}
+
+.columns-topics .columns-topics-toggle[aria-expanded='true']::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12h12' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+@media (width >= 900px) {
+  .columns-topics {
+    --columns-topics-gap: 10px;
+  }
+
+  /* KP 12-column grid: photo spans 4, text spans 8 */
+  .columns-topics .columns-topics-row {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .columns-topics .columns-topics-img-col {
+    grid-column: span 4;
+  }
+
+  .columns-topics .columns-topics-text-col {
+    grid-column: span 8;
+  }
+
+  .columns-topics.no-image .columns-topics-text-col {
+    grid-column: 1 / -1;
+  }
+
+  main .columns-topics.block h2 {
+    margin: 20px 0 40px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  main .columns-topics.block a.columns-topics-pill:any-link {
+    height: auto;
+    padding: 11px 24px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .columns-topics .columns-topics-toggle {
+    padding: 10px 13px 12px 0;
+  }
+}
+
+@media (width >= 1200px) {
+  .columns-topics {
+    --columns-topics-gap: 12px;
+  }
+
+  main .columns-topics.block h2 {
+    margin: 24px 0 48px;
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  .columns-topics .columns-topics-toggle {
+    padding: 12px 15px 14px 0;
+  }
+}

@@ -1,0 +1,122 @@
+/* Cards (pillars) – KP "why-kp": three centered value props, each an optional
+   illustration above a heading and text. No card chrome; sits on the grey band.
+   Source tiers: <768 (mobile), 768-1199 (tablet, stacked), >=1200 (3 columns);
+   mapped to the project breakpoints 600/900/1200.
+   Text colour is left to the template/theme (front-door: #000). */
+main .cards-pillars.block {
+  font-family: var(--font-family);
+}
+
+main .cards-pillars .cards-pillars-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main .cards-pillars .cards-pillars-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+/* illustration – the source Lottie box: full column width x 298px */
+main .cards-pillars .cards-pillars-card-image {
+  width: 100%;
+  line-height: 0;
+}
+
+main .cards-pillars .cards-pillars-card-image picture {
+  display: block;
+  width: 100%;
+}
+
+main .cards-pillars.block .cards-pillars-card-image :is(img, svg) {
+  display: block;
+  width: 100%;
+  height: 298px;
+  object-fit: contain;
+}
+
+main .cards-pillars .cards-pillars-card-body {
+  width: 100%;
+}
+
+main .cards-pillars.block .cards-pillars-card-body > :is(h1, h2, h3, h4, h5, h6) {
+  margin: 6.5px;
+  font-family: var(--font-family);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+/* no illustration: the heading starts the pillar, no reserved space */
+main .cards-pillars.block .cards-pillars-card.no-image .cards-pillars-card-body > :first-child {
+  margin-top: 0;
+}
+
+main .cards-pillars.block .cards-pillars-card-body > h2::after {
+  content: none;
+}
+
+main .cards-pillars.block .cards-pillars-card-body > p {
+  max-width: 325px;
+  margin: 0 auto;
+  font-family: var(--font-family);
+  font-size: 13px;
+  line-height: 1.33;
+}
+
+/* the source separates a footnote from its paragraph by one blank line */
+main .cards-pillars.block .cards-pillars-card-body > p + p {
+  margin-top: 1.33em;
+}
+
+@media (width >= 600px) {
+  main .cards-pillars .cards-pillars-card {
+    max-width: 426px;
+  }
+}
+
+@media (width >= 900px) {
+  main .cards-pillars .cards-pillars-card {
+    max-width: 475px;
+  }
+
+  main .cards-pillars.block .cards-pillars-card-body > :is(h1, h2, h3, h4, h5, h6) {
+    margin: 12.5px;
+  }
+
+  main .cards-pillars.block .cards-pillars-card-body > p {
+    max-width: none;
+    font-size: 14px;
+  }
+}
+
+@media (width >= 1200px) {
+  main .cards-pillars .cards-pillars-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 14px;
+  }
+
+  main .cards-pillars .cards-pillars-card {
+    max-width: none;
+  }
+
+  main .cards-pillars.block .cards-pillars-card-body > :is(h1, h2, h3, h4, h5, h6) {
+    margin: 17.2px;
+    font-size: 26px;
+  }
+
+  main .cards-pillars.block .cards-pillars-card-body > p {
+    max-width: 325px;
+    font-size: 16px;
+  }
+}

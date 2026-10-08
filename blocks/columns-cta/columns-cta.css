@@ -1,0 +1,147 @@
+/* Columns (cta) – KP "kp-care" coverage prompt below the value pillars: a white
+   box (1px border, 16px radius, soft shadow) with the text and a pill button.
+   Source tiers: <768 (stacked, centred, full width), 768-1151 (row, 8 of 12
+   columns), >=1152 (row, 6 of 12 columns); mapped to the project breakpoints
+   900/1200. The block's top margin reproduces the source gap below the pillars;
+   the space below comes from the section padding. */
+main .columns-cta.block {
+  margin-top: 15px;
+  font-family: var(--font-family);
+}
+
+main .columns-cta .columns-cta-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 15px;
+  border: 1px solid rgb(0 0 0 / 10%);
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
+  color: #000;
+  text-align: center;
+}
+
+main .columns-cta .columns-cta-text {
+  min-width: 0;
+}
+
+main .columns-cta.block .columns-cta-text > :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  color: #000;
+  font-family: var(--font-family);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+main .columns-cta.block .columns-cta-text > h2::after {
+  content: none;
+}
+
+main .columns-cta.block .columns-cta-text > p {
+  margin: 10px 0 15px;
+  color: #000;
+  font-family: var(--font-family);
+  font-size: 13px;
+  line-height: 1.33;
+}
+
+main .columns-cta .columns-cta-action {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+main .columns-cta.block .columns-cta-action > p {
+  margin: 0;
+}
+
+/* KP pill button (same treatment as the columns-overlap suggestion pills) */
+main .columns-cta.block .columns-cta-action a.button:any-link {
+  display: inline-block;
+  box-sizing: border-box;
+  min-height: 44px;
+  margin: 0;
+  padding: 11px 10px;
+  border: 1px solid var(--kp-blue-hover, #0078b3);
+  border-radius: var(--kp-radius-pill, 24px);
+  background: #f0f7fa;
+  color: var(--kp-blue-dark, #003b71);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+main .columns-cta.block .columns-cta-action a.button:hover,
+main .columns-cta.block .columns-cta-action a.button:focus-visible {
+  border-color: var(--kp-blue-hover, #0078b3);
+  background: #f0f7fa;
+  color: var(--kp-blue-dark, #003b71);
+  text-decoration: underline;
+}
+
+/* tablet: text left, button right; box spans 8 of 12 columns */
+@media (width >= 900px) {
+  main .columns-cta.block {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 1vw;
+    margin-top: 25px;
+  }
+
+  main .columns-cta .columns-cta-row {
+    grid-column: 3 / 11;
+    flex-direction: row;
+    padding: 12.5px 25px;
+    text-align: left;
+  }
+
+  main .columns-cta.block .columns-cta-text > p {
+    font-size: 14px;
+  }
+
+  main .columns-cta .columns-cta-action {
+    flex: 0 0 auto;
+  }
+
+  main .columns-cta.block .columns-cta-action a.button:any-link {
+    min-height: 48px;
+    padding: 11px 13px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+/* desktop: box spans 6 of 12 columns */
+@media (width >= 1200px) {
+  main .columns-cta.block {
+    margin-top: 34.4px;
+  }
+
+  main .columns-cta .columns-cta-row {
+    grid-column: 4 / 10;
+    padding: 17.2px 34.4px;
+  }
+
+  main .columns-cta.block .columns-cta-text > :is(h1, h2, h3, h4, h5, h6) {
+    font-size: 26px;
+  }
+
+  main .columns-cta.block .columns-cta-text > p {
+    font-size: 16px;
+  }
+
+  main .columns-cta.block .columns-cta-action a.button:any-link {
+    padding: 11px 15px;
+  }
+}

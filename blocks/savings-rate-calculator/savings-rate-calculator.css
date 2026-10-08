@@ -2,184 +2,264 @@ main .savings-rate-calculator {
   max-width: var(--grid-container-width);
   margin: 0 auto;
   padding: var(--space-m) var(--content-padding-inline);
+  color: var(--text-color);
 }
 
+/* Preset chips – KP pills */
 main .savings-rate-calculator .savings-rate-calculator-presets {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-xs);
-  margin-bottom: var(--space-s);
+  gap: var(--space-s);
+  margin-bottom: var(--space-m);
 }
 
 main .savings-rate-calculator .savings-rate-calculator-presets-label {
   margin: 0;
-  font-size: var(--body-font-size-s);
-  font-weight: 600;
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
 }
 
+main .savings-rate-calculator .savings-rate-calculator-presets button {
+  box-sizing: border-box;
+  min-block-size: 48px;
+  border: 1px solid light-dark(var(--kp-border), var(--color-rust-bright));
+  border-radius: var(--kp-radius-pill);
+  padding: 11px var(--space-l);
+  font: inherit;
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
+  line-height: 24px;
+  color: light-dark(var(--kp-navy), var(--kp-pale-blue));
+  background: light-dark(#fff, transparent);
+  cursor: pointer;
+  transition: background-color 0.12s ease-out, border-color 0.12s ease-out;
+}
+
+main .savings-rate-calculator .savings-rate-calculator-presets button:hover {
+  text-decoration: underline;
+  background: light-dark(var(--kp-pale-blue), rgb(91 184 232 / 10%));
+}
+
+main .savings-rate-calculator .savings-rate-calculator-presets button.is-active {
+  border-color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
+  font-weight: 500;
+  color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
+  background: light-dark(var(--kp-pale-blue), rgb(91 184 232 / 18%));
+  box-shadow: inset 0 0 0 1px light-dark(var(--kp-blue-dark), var(--kp-blue-light));
+}
+
+/* "How to read this calculator" disclosure */
 main .savings-rate-calculator .savings-rate-calculator-legend {
-  margin: 0 0 var(--space-s);
-  border: 1px dashed light-dark(var(--color-gray-300), var(--color-gray-600));
-  border-radius: 10px;
-  padding: 6px 8px;
+  margin: 0 0 var(--space-m);
+  border: var(--border-heritage);
+  border-radius: 8px;
+  padding: 12px var(--space-m);
+  background: light-dark(#fff, var(--color-card-dark));
 }
 
 main .savings-rate-calculator .savings-rate-calculator-legend summary {
   cursor: pointer;
-  font-size: var(--body-font-size-s);
-  font-weight: 600;
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  color: var(--link-color);
+}
+
+main .savings-rate-calculator .savings-rate-calculator-legend summary:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+main .savings-rate-calculator .savings-rate-calculator-legend summary:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 main .savings-rate-calculator .savings-rate-calculator-legend ul {
-  margin: var(--space-xs) 0 0;
-  padding-inline-start: 18px;
+  margin: var(--space-s) 0 0;
+  padding-inline-start: 20px;
   display: grid;
-  gap: 4px;
+  gap: var(--space-xs);
   font-size: var(--body-font-size-s);
-  color: light-dark(var(--color-gray-700), var(--color-gray-300));
-}
-
-main .savings-rate-calculator .savings-rate-calculator-presets button {
-  border: 1px solid light-dark(var(--color-gray-300), var(--color-gray-600));
-  border-radius: 999px;
-  padding: 6px 10px;
-  font: inherit;
-  font-size: var(--body-font-size-s);
-  color: inherit;
-  background: light-dark(var(--color-light), rgb(21 25 31));
-  cursor: pointer;
-}
-
-main .savings-rate-calculator .savings-rate-calculator-presets button.is-active {
-  border-color: var(--color-accent);
-  background: light-dark(rgb(57 96 119 / 10%), rgb(57 96 119 / 22%));
+  color: light-dark(var(--color-gray-700), var(--color-muted));
 }
 
 main .savings-rate-calculator .savings-rate-calculator-layout {
   display: grid;
-  gap: var(--space-s);
+  gap: var(--space-m);
 }
 
+/* Input panel – KP pale-blue band */
 main .savings-rate-calculator .savings-rate-calculator-form {
   display: grid;
-  gap: var(--space-xs);
+  gap: var(--space-m);
   border: var(--border-heritage);
-  border-radius: 16px;
-  padding: var(--space-m);
-  background: light-dark(var(--color-parchment), var(--color-card-dark));
+  border-radius: var(--border-radius-heritage);
+  padding: var(--space-l) var(--space-m);
+  background: var(--light-color);
 }
 
 main .savings-rate-calculator .savings-rate-calculator-group {
   display: grid;
-  gap: var(--space-xs);
+  gap: var(--space-m);
 }
 
 main .savings-rate-calculator .savings-rate-calculator-row {
   display: grid;
-  gap: 4px;
+  gap: 6px;
 }
 
 main .savings-rate-calculator .savings-rate-calculator-label {
-  font-size: var(--body-font-size-s);
-  font-weight: 600;
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 main .savings-rate-calculator .savings-rate-calculator-tip {
-  color: light-dark(var(--color-gray-600), var(--color-gray-300));
+  font-weight: 700;
+  color: light-dark(var(--kp-blue-hover), var(--color-rust-bright));
   cursor: help;
 }
 
 main .savings-rate-calculator .savings-rate-calculator-input-wrap {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-s);
 }
 
+/* KP form fields */
 main .savings-rate-calculator input[type='number'],
 main .savings-rate-calculator select {
+  box-sizing: border-box;
   inline-size: 100%;
-  border: 1px solid light-dark(var(--color-gray-300), var(--color-gray-600));
-  border-radius: 8px;
-  padding: 8px 10px;
+  min-inline-size: 0;
+  min-block-size: 48px;
+  border: 1px solid var(--color-gray-500);
+  border-radius: 4px;
+  padding: 10px 12px;
   font: inherit;
-  color: inherit;
-  background: light-dark(var(--color-light), rgb(25 29 35));
+  font-size: var(--body-font-size-m);
+  color: var(--text-color);
+  background: light-dark(#fff, var(--color-card-dark));
+}
+
+main .savings-rate-calculator input[type='number']:focus-visible,
+main .savings-rate-calculator select:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 0;
+  border-color: var(--link-color);
+}
+
+main .savings-rate-calculator input[type='number']:disabled {
+  cursor: not-allowed;
+  color: light-dark(var(--color-gray-600), var(--color-muted));
+  background: light-dark(var(--kp-grey), rgb(242 248 251 / 6%));
+  border-color: light-dark(var(--color-gray-300), var(--color-gray-600));
 }
 
 main .savings-rate-calculator input[type='range'] {
   inline-size: 100%;
+  min-inline-size: 0;
+  accent-color: light-dark(var(--kp-blue), var(--color-rust-bright));
 }
 
 main .savings-rate-calculator .savings-rate-calculator-suffix {
+  flex-shrink: 0;
   font-size: var(--body-font-size-s);
-  color: light-dark(var(--color-gray-600), var(--color-gray-300));
+  color: light-dark(var(--color-gray-700), var(--color-muted));
 }
 
 main .savings-rate-calculator .savings-rate-calculator-toggle {
   grid-template-columns: 1fr auto;
   align-items: center;
-  border: 1px dashed light-dark(var(--color-gray-300), var(--color-gray-600));
-  border-radius: 8px;
-  padding: 6px 8px;
+  gap: var(--space-m);
+  min-block-size: 48px;
+  box-sizing: border-box;
+  border: var(--border-heritage);
+  border-radius: 4px;
+  padding: var(--space-s) var(--space-m);
+  background: light-dark(#fff, rgb(242 248 251 / 4%));
+  cursor: pointer;
 }
 
 main .savings-rate-calculator .savings-rate-calculator-toggle input {
-  inline-size: 18px;
-  block-size: 18px;
+  inline-size: 20px;
+  block-size: 20px;
+  margin: 0;
+  accent-color: var(--link-color);
+  cursor: pointer;
 }
 
+main .savings-rate-calculator .savings-rate-calculator-toggle input:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+/* Results – KP cards */
 main .savings-rate-calculator .savings-rate-calculator-output {
   display: grid;
-  gap: var(--space-xs);
+  gap: var(--space-m);
+  min-inline-size: 0;
 }
 
 main .savings-rate-calculator .savings-rate-calculator-metric {
-  border: 1px solid light-dark(var(--color-gray-200), rgb(245 242 237 / 10%));
-  border-radius: 12px;
-  padding: var(--space-m);
-  background: light-dark(var(--color-light), var(--color-card-dark));
-  transition: border-color 0.3s, box-shadow 0.3s;
+  min-inline-size: 0;
+  border: var(--border-heritage);
+  border-radius: var(--border-radius-heritage);
+  padding: var(--space-l);
+  background: light-dark(#fff, var(--color-card-dark));
+  box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
 }
 
-main .savings-rate-calculator .savings-rate-calculator-metric:hover {
-  border-color: light-dark(var(--color-gold), rgb(197 160 89 / 35%));
-  box-shadow: 0 8px 24px light-dark(rgb(161 79 43 / 10%), rgb(197 160 89 / 8%));
+/* headline result (savings rate) – pale-blue band with a KP-blue indicator */
+main .savings-rate-calculator .savings-rate-calculator-metric:first-child {
+  border-inline-start: 4px solid light-dark(var(--kp-blue), var(--color-rust-bright));
+  background: var(--light-color);
 }
 
 main .savings-rate-calculator .savings-rate-calculator-metric h3 {
-  margin: 0 0 6px;
-  font-size: var(--heading-font-size-xs);
+  margin: 0 0 var(--space-s);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 500;
+  line-height: 1.4;
+  color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
 }
 
 main .savings-rate-calculator .savings-rate-calculator-metric-value {
-  margin: 0 0 6px;
-  font-size: clamp(20px, 1.8vw, 28px);
+  margin: 0 0 var(--space-s);
+  font-family: var(--heading-font-family);
+  font-size: clamp(24px, 2vw, 32px);
+  font-weight: 500;
   line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 main .savings-rate-calculator .savings-rate-calculator-metric-note {
   margin: 0;
-  color: light-dark(var(--color-gray-700), var(--color-gray-300));
+  color: light-dark(var(--color-gray-700), var(--color-muted));
   font-size: var(--body-font-size-s);
 }
 
+/* Savings-rate progress bar – flat KP blue */
 main .savings-rate-calculator .savings-rate-calculator-progress {
-  margin: var(--space-s) 0 var(--space-m);
+  margin: 0 0 var(--space-m);
   padding: var(--space-xs) 0;
 }
 
 main .savings-rate-calculator .savings-rate-calculator-progress-label {
-  margin: 0 0 6px;
+  margin: 0 0 var(--space-s);
   font-size: var(--body-font-size-s);
-  font-weight: 600;
+  font-weight: 500;
+  color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
 }
 
 main .savings-rate-calculator .savings-rate-calculator-progress-track {
   inline-size: 100%;
-  block-size: 10px;
-  border-radius: 999px;
-  background: light-dark(var(--color-gray-200), var(--color-gray-700));
+  block-size: 8px;
+  border-radius: 4px;
+  background: light-dark(var(--color-gray-200), rgb(242 248 251 / 16%));
   overflow: clip;
 }
 
@@ -188,13 +268,31 @@ main .savings-rate-calculator .savings-rate-calculator-progress-fill {
   block-size: 100%;
   inline-size: 0;
   border-radius: inherit;
-  background: var(--gradient-brand);
+  background: light-dark(var(--kp-blue), var(--color-rust-bright));
   transition: inline-size 0.5s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main .savings-rate-calculator .savings-rate-calculator-progress-fill,
+  main .savings-rate-calculator .savings-rate-calculator-presets button {
+    transition: none;
+  }
+}
+
+@media (width >= 600px) {
+  main .savings-rate-calculator .savings-rate-calculator-form {
+    padding: var(--space-l);
+  }
+
+  main .savings-rate-calculator .savings-rate-calculator-output {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
 }
 
 @media (width >= 900px) {
   main .savings-rate-calculator .savings-rate-calculator-layout {
-    grid-template-columns: minmax(260px, 390px) 1fr;
+    grid-template-columns: minmax(260px, 390px) minmax(0, 1fr);
+    gap: var(--space-l);
     align-items: start;
   }
 }

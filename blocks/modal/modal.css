@@ -17,7 +17,7 @@
 .modal .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: light-dark(rgb(26 26 26 / 40%), rgb(0 0 0 / 55%));
+  background: light-dark(rgb(13 28 61 / 40%), rgb(0 0 0 / 55%));
   backdrop-filter: blur(6px);
 }
 
@@ -29,34 +29,46 @@
   overflow: auto;
   border-radius: var(--border-radius-heritage);
   border: var(--border-heritage);
-  background: light-dark(var(--color-light), var(--color-card-dark));
-  box-shadow: var(--shadow-lift-l);
-  padding: var(--space-xl);
+  background: light-dark(#fff, var(--color-card-dark));
+  color: var(--text-color);
+  box-shadow: 0 8px 32px light-dark(rgb(13 28 61 / 18%), rgb(0 0 0 / 50%));
+  padding: var(--space-l);
 }
 
+/* KP round close control: pale-blue pill with KP-blue border */
 .modal .modal-close {
   position: sticky;
   top: 0;
+  z-index: 1;
   margin-left: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid light-dark(var(--color-gray-200), rgb(245 242 237 / 15%));
-  border-radius: 999px;
-  background: light-dark(var(--color-parchment), var(--color-obsidian));
-  color: inherit;
-  font-size: 20px;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid light-dark(var(--kp-border), var(--color-rust-bright));
+  border-radius: var(--kp-radius-pill);
+  background: light-dark(var(--kp-pale-blue), var(--color-card-dark));
+  color: light-dark(var(--kp-blue), var(--kp-blue-light));
+  font-size: 24px;
+  font-weight: 400;
   line-height: 1;
   cursor: pointer;
-  transition: background-color 0.25s, transform 0.25s, border-color 0.25s;
+  transition: background-color 0.12s ease-out, border-color 0.12s ease-out, color 0.12s ease-out;
 }
 
-.modal .modal-close:hover {
-  background-color: light-dark(var(--color-gray-100), var(--color-gray-800));
-  border-color: var(--color-gold);
-  transform: scale(1.08);
+.modal .modal-close:hover,
+.modal .modal-close:focus-visible {
+  border-color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
+  background-color: light-dark(var(--kp-blue-hover), var(--color-rust-bright));
+  color: light-dark(#fff, var(--color-obsidian));
+}
+
+.modal .modal-close:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
 }
 
 .modal .modal-content .modal-main {
@@ -74,5 +86,9 @@
 @media (width >= 600px) {
   .modal {
     padding: var(--space-m);
+  }
+
+  .modal .modal-dialog {
+    padding: var(--space-xl);
   }
 }

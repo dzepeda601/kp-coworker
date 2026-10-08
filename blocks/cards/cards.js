@@ -150,6 +150,20 @@ function decorateDefault(block) {
       linkEl.classList.remove('button');
     }
 
+    // Image links with decorative images (alt="") have no accessible name: when the body links to
+    // the same place, take the duplicate out of the tab order; otherwise name it after the title.
+    li.querySelectorAll('.cards-card-image a[href]').forEach((a) => {
+      if (a.textContent.trim() || a.getAttribute('aria-label') || a.querySelector('img:not([alt=""])')) return;
+      const bodyLink = [...li.querySelectorAll('.cards-card-body a[href]')].find((b) => b.href === a.href);
+      if (bodyLink) {
+        a.setAttribute('aria-hidden', 'true');
+        a.tabIndex = -1;
+      } else {
+        const title = li.querySelector('.cards-card-body :is(h2, h3, h4, strong, p)')?.textContent.trim();
+        if (title) a.setAttribute('aria-label', title);
+      }
+    });
+
     const article = createTag('article');
     while (li.firstChild) article.append(li.firstChild);
     li.append(article);

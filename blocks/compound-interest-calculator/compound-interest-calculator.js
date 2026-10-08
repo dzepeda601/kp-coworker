@@ -170,6 +170,25 @@ function calculate(values) {
 }
 
 /**
+ * Read chart colours from the block CSS (custom properties + resolved color/border-color)
+ * so the chart follows the KP palette in light and dark mode.
+ * @param {HTMLCanvasElement} canvas
+ */
+function getChartTheme(canvas) {
+  const styles = getComputedStyle(canvas);
+  const prop = (name, fallback) => styles.getPropertyValue(name).trim() || fallback;
+  return {
+    text: styles.color,
+    grid: styles.borderTopColor,
+    font: styles.fontFamily,
+    investment: prop('--cic-chart-investment', 'rgba(185, 226, 245, 0.85)'),
+    investmentLine: prop('--cic-chart-investment-line', '#8fcbe8'),
+    interest: prop('--cic-chart-interest', 'rgba(0, 116, 173, 0.85)'),
+    interestLine: prop('--cic-chart-interest-line', '#0074ad'),
+  };
+}
+
+/**
  * Draw stacked area chart with Chart.js (Value of investment + Total interest earned).
  * Uses shared loadChartJs / createChart from scripts/shared.js.
  * @param {HTMLCanvasElement} canvas
@@ -181,6 +200,8 @@ function drawChartWithChartJs(canvas, chartData) {
   const labels = chartData.map((d) => d.month);
   const valueOfInvestmentData = chartData.map((d) => d.valueOfInvestment);
   const interestData = chartData.map((d) => d.totalValue - d.valueOfInvestment);
+  const theme = getChartTheme(canvas);
+  const font = { family: theme.font };
   const config = {
     type: 'line',
     data: {
@@ -189,8 +210,8 @@ function drawChartWithChartJs(canvas, chartData) {
         {
           label: 'Value of investment',
           data: valueOfInvestmentData,
-          backgroundColor: 'rgba(184, 217, 235, 0.7)',
-          borderColor: 'rgb(126, 184, 218)',
+          backgroundColor: theme.investment,
+          borderColor: theme.investmentLine,
           borderWidth: 0,
           fill: true,
           tension: 0.2,
@@ -198,8 +219,8 @@ function drawChartWithChartJs(canvas, chartData) {
         {
           label: 'Total interest earned',
           data: interestData,
-          backgroundColor: 'rgba(57, 96, 119, 0.7)',
-          borderColor: 'rgb(90, 138, 158)',
+          backgroundColor: theme.interest,
+          borderColor: theme.interestLine,
           borderWidth: 0,
           fill: true,
           tension: 0.2,
@@ -212,7 +233,7 @@ function drawChartWithChartJs(canvas, chartData) {
       aspectRatio: 2.3,
       interaction: { intersect: false, mode: 'index' },
       plugins: {
-        legend: { display: true, position: 'top' },
+        legend: { display: true, position: 'top', labels: { color: theme.text, font } },
         tooltip: {
           callbacks: {
             label(ctx) {
@@ -224,14 +245,23 @@ function drawChartWithChartJs(canvas, chartData) {
       },
       scales: {
         x: {
-          title: { display: true, text: 'Months' },
+          title: {
+            display: true, text: 'Months', color: theme.text, font,
+          },
           stacked: true,
+          ticks: { color: theme.text, font },
+          grid: { color: theme.grid },
         },
         y: {
-          title: { display: true, text: 'Total value' },
+          title: {
+            display: true, text: 'Total value', color: theme.text, font,
+          },
           stacked: true,
           beginAtZero: true,
+          grid: { color: theme.grid },
           ticks: {
+            color: theme.text,
+            font,
             callback(value) {
               return money(value);
             },

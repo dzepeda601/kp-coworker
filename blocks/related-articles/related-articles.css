@@ -1,4 +1,5 @@
-/* Related articles block – default slider, mobile-first */
+/* Related articles block – KP article cards (healthy.kaiserpermanente.org).
+   Default: horizontal slider with KP pill arrows. Bento: grid with a featured first card. */
 
 main .related-articles {
   width: 100%;
@@ -15,13 +16,12 @@ main .related-articles .related-articles-slider {
 main .related-articles .related-articles-list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 2px 2px var(--space-s);
   display: flex;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  gap: var(--space-l);
-  padding-bottom: var(--space-s);
+  gap: var(--space-m);
   scroll-padding-inline: var(--content-padding-inline);
 }
 
@@ -30,80 +30,90 @@ main .related-articles .related-articles-card {
   flex: 0 0 min(86%, 360px);
   scroll-snap-align: start;
   margin: 0;
-  border: 1px solid light-dark(var(--color-gray-200), var(--color-gray-700));
-  border-radius: var(--space-m);
   overflow: clip;
-  background: light-dark(var(--color-light), var(--color-gray-900));
-  transition: transform 0.4s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)),
-    border-color 0.3s ease,
-    box-shadow 0.4s ease;
+  border: var(--border-heritage);
+  border-radius: 8px;
+  background: light-dark(#fff, var(--color-card-dark));
+  box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
+  color: var(--text-color);
+  transition: border-color 0.2s ease-out;
 }
 
 /* Card link */
 main .related-articles .related-articles-card-link {
-  color: inherit;
-  text-decoration: none;
   display: flex;
   flex-direction: column;
   height: 100%;
+  color: inherit;
+  text-decoration: none;
 }
 
 main .related-articles .related-articles-card-link:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--link-color);
   outline-offset: -2px;
-  border-radius: var(--space-m);
+  border-radius: 8px;
 }
 
-/* Card accent strip */
+/* KP cards carry no decorative accent strip */
 main .related-articles .related-articles-card-strip {
-  block-size: var(--space-s);
-  background: var(--color-accent);
+  display: none;
 }
 
 /* Card content */
 main .related-articles .related-articles-card-content {
-  padding: var(--space-m);
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
   height: 100%;
+  box-sizing: border-box;
+  padding: var(--space-m);
 }
 
 /* Heading */
 main .related-articles .related-articles-card h3 {
   margin: 0;
-  font-size: var(--heading-font-size-s);
-  line-height: 1.2;
+  color: var(--text-color);
+  font-size: var(--body-font-size-l);
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: normal;
 }
 
 /* Description */
 main .related-articles .related-articles-card-description {
   margin: 0;
-  line-height: 1.55;
-  color: light-dark(var(--color-gray-700), var(--color-gray-300));
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  line-height: 24px;
 }
 
 /* Date */
 main .related-articles .related-articles-card-date {
   margin: auto 0 0;
-  font-size: var(--body-font-size-xs);
-  color: var(--color-gray-500);
+  color: light-dark(var(--color-gray-600), var(--color-muted));
+  font-size: var(--body-font-size-s);
+  line-height: 20px;
 }
 
-/* Hover & focus */
+/* Hover & focus: darker border + title underline (no lift) */
 main .related-articles .related-articles-card:hover,
 main .related-articles .related-articles-card:focus-within {
-  transform: translateY(-6px);
-  border-color: light-dark(var(--color-gold), rgb(197 160 89 / 40%));
-  box-shadow: 0 20px 40px light-dark(rgb(161 79 43 / 14%), rgb(197 160 89 / 14%));
+  border-color: light-dark(rgb(0 0 0 / 20%), rgb(242 248 251 / 32%));
+}
+
+main .related-articles .related-articles-card-link:is(:hover, :focus-visible) h3 {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
 /* Empty state */
 main .related-articles .related-articles-empty {
   margin: var(--space-m) 0 0;
+  color: light-dark(var(--color-gray-600), var(--color-muted));
 }
 
-/* Slider controls */
+/* Slider controls – KP round pill arrows */
 main .related-articles .related-articles-controls {
   display: flex;
   justify-content: space-between;
@@ -116,21 +126,24 @@ main .related-articles .related-articles-controls {
 }
 
 main .related-articles .related-articles-arrow {
-  border: 1px solid light-dark(rgb(255 255 255 / 55%), rgb(255 255 255 / 16%));
-  background: light-dark(rgb(255 255 255 / 72%), rgb(24 27 32 / 70%));
-  color: inherit;
   inline-size: 44px;
   block-size: 44px;
-  border-radius: 999px;
   padding: 0;
-  font-size: 22px;
+  border: 1px solid light-dark(var(--kp-border), var(--color-rust-bright));
+  border-radius: 999px;
+  background: light-dark(#fff, var(--color-card-dark));
+  color: light-dark(var(--kp-blue), var(--kp-blue-light));
+  font-size: 20px;
   line-height: 1;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 10px 24px rgb(0 0 0 / 14%);
+  box-shadow: 0 4px 20px rgb(0 0 0 / 8%);
   pointer-events: auto;
   cursor: pointer;
-  transition: opacity 0.25s, transform 0.25s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)),
-    border-color 0.25s;
+  transition: opacity 0.2s, background-color 0.12s ease-out, color 0.12s ease-out;
+}
+
+main .related-articles .related-articles-arrow:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
 }
 
 main .related-articles .related-articles-arrow:disabled {
@@ -138,16 +151,15 @@ main .related-articles .related-articles-arrow:disabled {
   cursor: default;
 }
 
-main .related-articles .related-articles-arrow:hover:not(:disabled) {
-  border-color: var(--color-gold);
-  transform: scale(1.08);
-}
-
 main .related-articles .related-articles-arrow.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: scale(0.9);
+}
+
+main .related-articles .related-articles-arrow:hover:not(:disabled) {
+  background: light-dark(var(--kp-pale-blue), var(--color-obsidian));
+  color: light-dark(var(--kp-blue-dark), #fff);
 }
 
 @media (width >= 600px) {
@@ -170,14 +182,21 @@ main .related-articles .related-articles-arrow.is-hidden {
   }
 
   main .related-articles .related-articles-arrow {
-    inline-size: 52px;
-    block-size: 52px;
-    font-size: 24px;
+    inline-size: 48px;
+    block-size: 48px;
+  }
+}
+
+@media (width >= 1200px) {
+  main .related-articles .related-articles-card h3 {
+    font-size: var(--body-font-size-xl);
+    line-height: 28px;
+    letter-spacing: -0.01em;
   }
 }
 
 /* ==========================================================================
-   Bento variant – Heritage Elite grid layout
+   Bento variant – KP article grid, first card featured
    ========================================================================== */
 
 main .related-articles.bento .related-articles-list {
@@ -186,78 +205,35 @@ main .related-articles.bento .related-articles-list {
   overflow-x: visible;
   overscroll-behavior-x: auto;
   scroll-snap-type: none;
-  padding-bottom: 0;
+  padding: 0;
 }
 
 main .related-articles.bento .related-articles-card {
   flex: none;
-  border: var(--border-heritage);
-  border-radius: var(--border-radius-heritage);
-  background: light-dark(var(--color-parchment), var(--color-card-dark));
-  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-main .related-articles.bento .related-articles-card-link:focus-visible {
-  outline-color: var(--color-gold);
-  border-radius: var(--border-radius-heritage);
-}
-
-main .related-articles.bento .related-articles-card-content {
-  padding: 30px;
-}
-
-/* Keyword tag */
+/* Keyword tag – KP eyebrow (sentence case) */
 main .related-articles.bento .related-articles-card-tag {
   display: block;
-  font-family: var(--font-family-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--color-gold);
-  margin: 0 0 var(--space-xs);
-}
-
-/* Heading */
-main .related-articles.bento .related-articles-card h3 {
-  font-family: var(--font-family-serif);
+  color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
+  font-size: var(--body-font-size-s);
   font-weight: 500;
-  font-size: 1.4rem;
-  line-height: 1.15;
-  letter-spacing: -0.5px;
-  color: light-dark(var(--color-ink), var(--color-parchment));
+  line-height: 20px;
 }
 
-/* Description */
-main .related-articles.bento .related-articles-card-description {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: light-dark(var(--color-ink), var(--color-muted));
-  opacity: 0.8;
+main .related-articles.bento .related-articles-card-tag::first-letter {
+  text-transform: uppercase;
 }
 
-/* Date */
-main .related-articles.bento .related-articles-card-date {
-  font-family: var(--font-family-mono);
-  color: light-dark(var(--color-gray-500), var(--color-gray-400));
-  letter-spacing: 1px;
-}
-
-/* Hover & focus */
-main .related-articles.bento .related-articles-card:hover,
-main .related-articles.bento .related-articles-card:focus-within {
-  transform: translateY(-8px);
-  border-color: var(--color-gold);
-  box-shadow: 0 30px 60px -12px rgb(161 79 43 / 15%);
-}
-
-/* Featured (first) card */
-main .related-articles.bento .related-articles-card-featured .related-articles-card-content {
-  padding: 35px;
+/* Featured (first) card – pale-blue surface, larger title */
+main .related-articles.bento .related-articles-card-featured {
+  background: var(--light-color);
 }
 
 main .related-articles.bento .related-articles-card-featured h3 {
-  font-size: 1.8rem;
+  font-size: var(--heading-font-size-xl);
+  line-height: var(--heading-line-height);
+  letter-spacing: -0.01em;
 }
 
 /* Tablet: 2-column grid */
@@ -273,30 +249,11 @@ main .related-articles.bento .related-articles-card-featured h3 {
 
 /* Desktop: 3-column grid */
 @media (width >= 900px) {
-  main .related-articles.bento .related-articles-card-content {
-    padding: 40px;
-  }
-
-  main .related-articles.bento .related-articles-card-featured .related-articles-card-content {
-    padding: 45px;
-  }
-
-  main .related-articles.bento .related-articles-card-featured h3 {
-    font-size: 2.2rem;
-  }
-
-  main .related-articles.bento .related-articles-card h3 {
-    font-size: 1.6rem;
-  }
-
   main .related-articles.bento .related-articles-list {
     grid-template-columns: repeat(3, 1fr);
   }
-}
 
-/* Wide */
-@media (width >= 1200px) {
-  main .related-articles.bento .related-articles-card-featured h3 {
-    font-size: 2.4rem;
+  main .related-articles.bento .related-articles-card-featured .related-articles-card-content {
+    padding: var(--space-xl);
   }
 }

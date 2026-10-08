@@ -14,34 +14,41 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-l);
+  gap: var(--space-m);
 }
 
-/* Card */
+/* Card – KP card: white / card-dark surface, hairline border, 16px radius, soft shadow.
+   Hover = darker border + title underline (no lift or image zoom). */
 .product-grid-item {
-  border: 1px solid light-dark(var(--color-gray-200), rgb(245 242 237 / 10%));
-  background: light-dark(var(--color-light), var(--color-card-dark));
-  border-radius: 12px;
   overflow: hidden;
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s ease,
-    border-color 0.35s ease;
+  border: var(--border-heritage);
+  border-radius: var(--border-radius-heritage);
+  background: light-dark(#fff, var(--color-card-dark));
+  box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
+  transition: border-color 0.2s ease-out;
 }
 
 .product-grid-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 48px light-dark(rgb(161 79 43 / 18%), rgb(197 160 89 / 18%));
-  border-color: light-dark(var(--color-gold), rgb(197 160 89 / 45%));
+  border-color: light-dark(rgb(0 0 0 / 20%), rgb(242 248 251 / 32%));
+}
+
+/* keyboard focus ring on the whole card (the card clips the link's own outline) */
+.product-grid-item:has(.product-grid-link:focus-visible) {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
 }
 
 /* Link wraps the whole card */
-.product-grid-link {
+.product-grid .product-grid-link:any-link {
   display: flex;
   flex-direction: column;
   height: 100%;
   color: inherit;
   text-decoration: none;
+}
+
+.product-grid .product-grid-link:focus-visible {
+  outline: none;
 }
 
 /* Image */
@@ -55,17 +62,15 @@
   display: block;
 }
 
-.product-grid-image img {
+.product-grid .product-grid-image img,
+.product-grid .product-grid-link:hover .product-grid-image img {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.product-grid-item:hover .product-grid-image img {
-  transform: scale(1.05);
+  transform: none;
+  filter: none;
 }
 
 /* Body */
@@ -79,24 +84,31 @@
 
 .product-grid-title {
   margin: 0;
-  font-weight: 600;
-  font-size: var(--body-font-size-m);
-  line-height: 1.3;
-  color: light-dark(var(--color-ink), var(--color-parchment));
+  color: var(--text-color);
+  font-size: var(--body-font-size-l);
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.product-grid-link:hover .product-grid-title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
 .product-grid-price {
   margin: 0;
   margin-top: auto;
   padding-top: var(--space-s);
-  font-weight: 700;
-  font-size: var(--body-font-size-s);
-  color: light-dark(var(--color-rust), var(--color-rust-bright));
+  color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  line-height: 24px;
 }
 
 /* Empty / error state */
 .product-grid-empty {
-  color: light-dark(var(--color-gray-600), var(--color-gray-400));
+  color: light-dark(var(--color-gray-600), var(--color-muted));
   font-size: var(--body-font-size-s);
 }
 

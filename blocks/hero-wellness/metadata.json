@@ -1,0 +1,21 @@
+{
+  "variantName": "hero-wellness",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light-card-on-image",
+    "density": "spacious",
+    "purpose": "page-intro",
+    "imagePattern": "background-full-bleed",
+    "structure": "image + heading + paragraph",
+    "notes": "Text sits in white rounded card on left half; no CTA"
+  },
+  "contentPattern": "1 column: row 1 background image; row 2 H1 + paragraph",
+  "usage": {
+    "pagesUsing": ["https://healthy.kaiserpermanente.org/health-wellness"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-02"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

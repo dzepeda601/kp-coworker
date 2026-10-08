@@ -1,0 +1,328 @@
+{
+  "metadata": {
+    "projectType": "da"
+  },
+  "templates": [
+    {
+      "name": "health-wellness",
+      "urls": [
+        "https://healthy.kaiserpermanente.org/health-wellness"
+      ],
+      "representativeUrl": "https://healthy.kaiserpermanente.org/health-wellness",
+      "description": "To be named in naming step",
+      "blocks": [
+        {
+          "name": "hero-wellness",
+          "instances": [
+            ".gs-heroPattern .ds-hero"
+          ]
+        },
+        {
+          "name": "cards-spotlight",
+          "instances": [
+            ".column-control.margin-bottom-4u .gs-card-group .ds-card-group"
+          ]
+        },
+        {
+          "name": "columns-promo",
+          "instances": [
+            ".gs-banner .ds-banner"
+          ]
+        },
+        {
+          "name": "columns-topics",
+          "instances": [
+            ".column-control.blue-5 > .column-control-container"
+          ]
+        },
+        {
+          "name": "cards-tools",
+          "instances": [
+            ".gs-show-more-less .show-more-less:not(.--inline)"
+          ]
+        },
+        {
+          "name": "cards-articles",
+          "instances": [
+            ".topics-list-main-container"
+          ]
+        },
+        {
+          "name": "cards-care",
+          "instances": [
+            ".cmp-dynamicexperiencefragment--get-care-module .aem-Grid > .column-control:nth-of-type(2) .rows"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "1",
+          "name": "Hero",
+          "selector": [
+            ".gs-heroPattern"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-wellness"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "Jump to section",
+          "selector": [
+            ".column-control:has(#well-being-spotlight)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".column-control:has(#well-being-spotlight) .text.margin-bottom-2u",
+            ".column-control:has(#well-being-spotlight) .gs-show-more-less"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Healthy living spotlight",
+          "selector": [
+            ".ds-icon-with-text:has(> #well-being-spotlight)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-spotlight"
+          ],
+          "defaultContent": [
+            "#well-being-spotlight"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Flu promo banner",
+          "selector": [
+            ".column-control:has(.gs-banner)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "5",
+          "name": "Browse topics",
+          "selector": [
+            ".column-control.blue-5"
+          ],
+          "style": "light-blue",
+          "blocks": [
+            "columns-topics"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "6",
+          "name": "Tools for you",
+          "selector": [
+            ".column-control:has(#health-tools)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-tools"
+          ],
+          "defaultContent": [
+            "#health-tools"
+          ]
+        },
+        {
+          "id": "7",
+          "name": "Related articles",
+          "selector": [
+            ".column-control:has(#health-articles)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-articles"
+          ],
+          "defaultContent": [
+            "#health-articles",
+            "#explore-library"
+          ]
+        },
+        {
+          "id": "8",
+          "name": "Connecting to care",
+          "selector": [
+            ".dynamic-experience-fragment.blue-5"
+          ],
+          "style": "light-blue",
+          "blocks": [
+            "cards-care"
+          ],
+          "defaultContent": [
+            ".cmp-dynamicexperiencefragment--get-care-module .aem-Grid > .column-control:nth-of-type(1)"
+          ]
+        }
+      ],
+      "urlPattern": "/*"
+    },
+    {
+      "name": "northern-california",
+      "urls": [
+        "https://healthy.kaiserpermanente.org/northern-california/front-door"
+      ],
+      "representativeUrl": "https://healthy.kaiserpermanente.org/northern-california/front-door",
+      "description": "To be named in naming step",
+      "blocks": [
+        {
+          "name": "columns-overlap",
+          "instances": [
+            ".gs-text-image .welcome-hero",
+            ".gs-text-image .welcome-story"
+          ]
+        },
+        {
+          "name": "cards-spotlight",
+          "instances": [
+            ".dynamic-content-carousel .carousel-thumbstrip-no-conflict"
+          ]
+        },
+        {
+          "name": "cards-teaser",
+          "instances": [
+            ".fd-teaser .fd-teaser-container"
+          ]
+        },
+        {
+          "name": "cards-pillars",
+          "instances": [
+            ".why-kp .kp-section-container"
+          ]
+        },
+        {
+          "name": "columns-cta",
+          "instances": [
+            ".why-kp .kp-care"
+          ]
+        },
+        {
+          "name": "cards-news",
+          "instances": [
+            ".column-control:has(.gs-icon-link-text) > .column-control-container"
+          ]
+        },
+        {
+          "name": "cards-notices",
+          "instances": [
+            ".kp-alerts-bulletin .alerts-container"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "1",
+          "name": "Today's suggestions + virtual care",
+          "selector": [
+            ".experiencefragment:has(.gs-text-image .welcome-hero)"
+          ],
+          "style": "grey",
+          "blocks": [
+            "columns-overlap"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "Doctors & locations",
+          "selector": [
+            ".fd-doctors-locations"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "#find-locations-success .find-locations__title",
+            "#find-locations-success .find-locations__footer"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "More resources intro",
+          "selector": [
+            ".fd-title:has(> .fd-title > .section-title--bg-gray)"
+          ],
+          "style": "grey",
+          "blocks": [],
+          "defaultContent": [
+            ".section-title--bg-gray"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "More resources cards",
+          "selector": [
+            ".dynamic-content-carousel"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-spotlight"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "5",
+          "name": "Encyclopedia teasers",
+          "selector": [
+            ".fd-teaser"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-teaser"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "6",
+          "name": "Your health. Our cause.",
+          "selector": [
+            ".experiencefragment:has(.why-kp)"
+          ],
+          "style": "grey",
+          "blocks": [
+            "cards-pillars",
+            "columns-cta"
+          ],
+          "defaultContent": [
+            ".why-kp .kp-title"
+          ]
+        },
+        {
+          "id": "7",
+          "name": "News & perspectives",
+          "selector": [
+            ".fd-title:has(> .fd-title > .news-pers__title)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-news"
+          ],
+          "defaultContent": [
+            ".news-pers__title"
+          ]
+        },
+        {
+          "id": "8",
+          "name": "Important notices",
+          "selector": [
+            ".alertBulletin"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-notices"
+          ],
+          "defaultContent": [
+            ".kp-alerts-bulletin .page-heading"
+          ]
+        }
+      ],
+      "urlPattern": "/northern-california/*"
+    }
+  ]
+}

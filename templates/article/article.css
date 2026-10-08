@@ -1,57 +1,44 @@
 /* ==========================================================================
-   Hero layout — image fills from behind; hero height is driven by text content
+   Article hero — builds on the KP hero block (image + white text card).
+   Mobile/tablet keep the block's stacked layout (image above the card).
+   Desktop: the image fills the hero from behind and the card stays in normal
+   flow, so long titles plus the byline grow the hero instead of overflowing
+   it. The min-height matches the hero block's image height (no layout shift).
    ========================================================================== */
 
-/* Anchor the hero so it never collapses below the original image height.
-   Without this, article.css loading after hero.css causes a dramatic
-   layout shift (image-driven ~500px → text-driven ~250px) that makes the
-   background image virtually invisible and produces a high CLS score. */
-.article .hero {
-  min-height: 300px;
-}
-
-@media (width >= 900px) {
-  .article .hero {
-    min-height: 480px;
-  }
-}
-
-/* Text div: override to normal flow — its padding + content sets the hero height */
-.article .hero > div:last-child {
-  position: relative;
-  inset: auto;
-}
-
-/* Tighten vertical padding: 100px was sized for a fixed-height hero;
-   with a content-driven height it over-pads short titles */
 @media (width >= 900px) {
   .article .hero > div:last-child {
-    padding-block: 60px;
+    position: relative;
+    inset: auto;
+    min-height: 480px;
+    padding-block: var(--space-xl);
+  }
+
+  .article .hero > div:not(:last-child) {
+    position: absolute;
+    inset: 0;
+  }
+
+  .article .hero > div:not(:last-child) > div,
+  .article .hero > div:not(:last-child) picture {
+    display: block;
+    height: 100%;
+  }
+
+  .article .hero > div:not(:last-child) picture img {
+    max-height: none;
+    height: 100%;
   }
 }
 
-/* Image div: absolutely fills the hero so it plays no part in sizing the height.
-   The original design had the text overlay absolute; here we swap the roles. */
-.article .hero > div:first-child {
-  position: absolute;
-  inset: 0;
-}
-
-/* height: 100% resolves correctly here because the parent has a definite height
-   from position: absolute; inset: 0 (= hero height). */
-.article .hero > div:first-child > div,
-.article .hero > div:first-child picture {
-  display: block;
-  height: 100%;
-}
-
-.article .hero > div:first-child picture img {
-  max-height: none;
-  height: 100%;
+@media (width >= 1200px) {
+  .article .hero > div:last-child {
+    min-height: 520px;
+  }
 }
 
 /* ==========================================================================
-   Author / Date byline
+   Author / date byline (inside the hero card)
    ========================================================================== */
 
 .article .hero .article-author-container {
@@ -59,34 +46,29 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  gap: 0 var(--space-m);
-  max-width: var(--grid-container-width);
-  margin: 0 auto;
+  gap: var(--space-xs) var(--space-m);
+  box-sizing: border-box;
   width: 100%;
   padding-top: var(--space-m);
-  border-top: 1px solid light-dark(rgb(161 79 43 / 20%), rgb(245 242 237 / 18%));
+  border-top: var(--border-heritage);
+  font-size: var(--body-font-size-s);
+  line-height: 20px;
 }
 
 .article .hero .article-author {
-  font-size: var(--body-font-size-xs);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: light-dark(var(--color-rust), var(--color-rust-bright));
+  font-weight: 500;
+  color: var(--hero-eyebrow, light-dark(var(--kp-blue-dark), var(--kp-blue-light)));
 }
 
 .article .hero .article-author::after {
   content: '·';
   margin-left: var(--space-m);
-  font-style: normal;
-  color: light-dark(rgb(0 0 0 / 30%), rgb(245 242 237 / 35%));
+  color: light-dark(var(--color-gray-500), var(--color-muted));
 }
 
 .article .hero .article-date {
-  font-family: var(--font-family-serif);
-  font-size: var(--body-font-size-s);
-  font-style: italic;
-  color: light-dark(var(--color-gray-600), var(--color-muted));
+  font-weight: 400;
+  color: light-dark(var(--color-gray-700), var(--color-muted));
   white-space: nowrap;
 }
 
@@ -95,10 +77,10 @@
    ========================================================================== */
 
 .article .article-breadcrumb {
-  background-color: light-dark(rgb(161 79 43 / 4%), rgb(245 242 237 / 3%));
-  border-bottom: 1px solid light-dark(var(--color-gray-200), rgb(245 242 237 / 8%));
   margin: 0;
   padding: var(--space-m) var(--content-padding-inline);
+  border-bottom: var(--border-heritage);
+  background-color: var(--background-color);
 }
 
 .article .article-breadcrumb ol {
@@ -106,43 +88,35 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0;
+  gap: var(--space-xs) 0;
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 0;
-  max-width: var(--grid-container-width);
-  font-size: var(--body-font-size-xs);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+  max-width: calc(var(--content-max-width) - 2 * var(--content-padding-inline));
+  font-size: var(--body-font-size-s);
+  line-height: 20px;
 }
 
 .article .article-breadcrumb li:not(:last-child)::after {
   content: '›';
-  margin: 0 var(--space-m);
-  color: var(--color-gold);
-  font-size: 1rem;
-  text-transform: none;
-  letter-spacing: 0;
+  margin: 0 var(--space-s);
+  color: light-dark(var(--color-gray-500), var(--color-muted));
 }
 
 .article .article-breadcrumb a {
-  color: light-dark(var(--color-gray-600), var(--color-muted));
+  color: var(--link-color);
   text-decoration: none;
-  transition: color 0.2s;
 }
 
 .article .article-breadcrumb a:hover,
 .article .article-breadcrumb a:focus-visible {
-  color: light-dark(var(--color-rust), var(--color-rust-bright));
+  color: var(--link-hover-color);
   text-decoration: underline;
-  text-underline-offset: 0.3em;
+  text-underline-offset: 0.2em;
   text-decoration-thickness: 1px;
 }
 
 .article .article-breadcrumb li[aria-current='page'] {
-  font-family: var(--font-family-serif);
-  font-size: var(--body-font-size-s);
-  font-style: italic;
-  text-transform: none;
-  letter-spacing: 0;
-  color: light-dark(var(--color-ink), var(--color-parchment));
+  font-weight: 500;
+  color: var(--text-color);
 }

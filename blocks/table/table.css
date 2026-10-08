@@ -1,61 +1,42 @@
+/* Table block – KP (healthy.kaiserpermanente.org) style */
 .table {
-  --table-border-color: light-dark(var(--color-gray-200), rgb(245 242 237 / 12%));
+  --table-border-color: light-dark(var(--color-gray-200), rgb(242 248 251 / 16%));
 
   width: 100%;
   overflow-x: auto;
-  border-radius: 12px;
 }
 
 .table table {
   width: 100%;
   max-width: 100%;
   border-collapse: collapse;
-  font-size: var(--body-font-size-xs);
-}
-
-@media (width >= 600px) {
-  .table table {
-    font-size: var(--body-font-size-s);
-  }
-}
-
-@media (width >= 900px) {
-  .table table {
-    font-size: var(--body-font-size-m);
-  }
-}
-
-.table table th {
-  font-weight: 700;
+  font-size: var(--body-font-size-s);
+  line-height: var(--body-line-height);
 }
 
 .table table th,
 .table table td {
-  padding: 0.75em 0.85em;
+  padding: 12px 16px;
   text-align: left;
+  vertical-align: top;
+}
+
+.table table th {
+  font-weight: 500;
 }
 
 .table table thead tr {
-  border-top: 2px solid var(--table-border-color);
-  border-bottom: 2px solid var(--table-border-color);
+  border-bottom: 2px solid light-dark(var(--kp-blue), var(--color-rust-bright));
 }
 
 .table table thead th {
   font-family: var(--body-font-family);
-  font-weight: 700;
-  font-size: 0.85em;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: light-dark(var(--color-ink), var(--color-parchment));
+  background-color: var(--light-color);
+  color: var(--text-color);
 }
 
 .table table tbody tr {
   border-bottom: 1px solid var(--table-border-color);
-  transition: background-color 0.2s;
-}
-
-.table table tbody tr:hover {
-  background-color: light-dark(rgb(161 79 43 / 4%), rgb(197 160 89 / 5%));
 }
 
 .table table th p,
@@ -68,21 +49,23 @@
 }
 
 /* no header variant */
-.table.no-header table tbody tr {
+.table.no-header table tbody tr:first-child {
   border-top: 1px solid var(--table-border-color);
 }
 
 /* striped variant */
-.table.striped tbody tr:nth-child(odd) {
-  background-color: var(--light-color);
-}
-
-.table.striped tbody tr:nth-child(odd):hover {
-  background-color: light-dark(rgb(161 79 43 / 6%), rgb(197 160 89 / 8%));
+.table.striped table tbody tr:nth-child(even) {
+  background-color: light-dark(var(--kp-grey), rgb(242 248 251 / 4%));
 }
 
 /* bordered variant */
 .table.bordered table th,
 .table.bordered table td {
   border: 1px solid var(--table-border-color);
+}
+
+@media (width >= 900px) {
+  .table table {
+    font-size: var(--body-font-size-m);
+  }
 }

@@ -1,0 +1,22 @@
+{
+  "variantName": "cards-tools",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "tool-links",
+    "imagePattern": "noimg",
+    "structure": "heading + description + link",
+    "columns": 3,
+    "notes": "Bordered rounded tiles, bold blue link, '+ View all tools for you (11)' toggle; toggle labels come from an optional final plain-text row (1st paragraph = view all, 2nd = show fewer)"
+  },
+  "contentPattern": "1 column per row: H3 + description + link (no image cell); show-more after 6 handled by block JS",
+  "usage": {
+    "pagesUsing": ["https://healthy.kaiserpermanente.org/health-wellness"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-02"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

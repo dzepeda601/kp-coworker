@@ -21,8 +21,10 @@
   --bp-desktop: 900px;
   --bp-wide: 1200px;
 
-  /* grid */
-  --grid-container-width: 83.4%;
+  /* grid – KP 1280px content column: sections are capped at --content-max-width (incl.
+     gutters); blocks that add their own inline padding size against --grid-container-width */
+  --content-max-width: 1320px;
+  --grid-container-width: calc(100% - 2 * var(--content-padding-inline));
   --grid-column-width: calc(var(--grid-container-width) / 12);
   --grid-gutter-width: 8.3%;
 
@@ -36,25 +38,36 @@
   --space-3xl: 64px;
   --space-4xl: 96px;
 
-  /* global layout rhythm */
+  /* global layout rhythm – KP 32/40/48px section spacing */
   --content-padding-inline: var(--space-m);
   --main-block-space: var(--space-l);
-  --section-block-space: var(--space-l);
+  --section-block-space: var(--space-xl);
 
   /* color scheme */
   color-scheme: light dark;
 
-  /* heritage palette */
-  --color-rust: #a14f2b;
-  --color-gold: #c5a059;
-  --color-parchment: #f5f2ed;
-  --color-ink: #1a1a1a;
+  /* KP palette (healthy.kaiserpermanente.org). The heritage token names are kept so
+     existing blocks follow the KP brand: rust = KP blue, gold = KP accent blue,
+     parchment = KP pale blue, ink = KP navy */
+  --kp-navy: #0d1c3d;
+  --kp-blue: #0074ad;
+  --kp-blue-dark: #003b71;
+  --kp-blue-hover: #0078b3;
+  --kp-pale-blue: #f2f8fb;
+  --kp-grey: #f7f7f7;
+  --kp-border: #0074ad;
+  --kp-radius-pill: 24px;
+  --color-rust: var(--kp-blue);
+  --color-gold: var(--kp-blue-hover);
+  --color-parchment: var(--kp-pale-blue);
+  --color-ink: var(--kp-navy);
 
-  /* heritage dark palette */
-  --color-obsidian: #060d0d;
-  --color-card-dark: #162121;
-  --color-rust-bright: #d16a3e;
-  --color-muted: #8b9a9a;
+  /* KP-derived dark palette (kp.org is light-only) */
+  --color-obsidian: #0a1530;
+  --color-card-dark: #13284d;
+  --color-rust-bright: #5bb8e8;
+  --color-muted: #9fb3c8;
+  --kp-blue-light: #b9e2f5;
 
   /* color tokens – grays and palette */
   --color-gray-100: #f1f1f1;
@@ -108,29 +121,29 @@
   /* semantic / named colors */
   --color-light: rgb(255 255 255);
   --color-dark: rgb(0 0 0);
-  --color-text: light-dark(var(--color-ink), var(--color-parchment));
-  --color-link: light-dark(var(--color-ink), var(--color-parchment));
-  --color-link-hover: light-dark(var(--color-rust), var(--color-gold));
+  --color-text: light-dark(var(--kp-navy), var(--kp-pale-blue));
+  --color-link: light-dark(var(--kp-blue), var(--color-rust-bright));
+  --color-link-hover: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
   --color-brand: var(--color-rust);
   --color-accent: var(--color-gold);
   --color-shaded: light-dark(var(--color-parchment), var(--color-card-dark));
 
   /* fonts */
   --font-family: montserrat, "Trebuchet MS", sans-serif;
-  --font-family-serif: "EB Garamond", georgia, serif;
+  --font-family-serif: var(--font-family); /* KP has no serif face; headings use Gotham (Montserrat) */
   --font-family-mono: "JetBrains Mono", "Courier New", monospace;
   --body-font-family: var(--font-family);
-  --heading-font-family: var(--font-family-serif);
+  --heading-font-family: var(--font-family);
 
-  /* heading sizes */
-  --heading-font-size-xxl: 32.44px;
-  --heading-font-size-xl: 28.83px;
-  --heading-font-size-l: 25.63px;
-  --heading-font-size-m: 22.78px;
-  --heading-font-size-s: 20.25px;
-  --heading-font-size-xs: 18px;
-  --heading-font-size-xxs: 16px;
-  --heading-line-height: 1.15;
+  /* heading sizes – KP scale (h1 xxl, h2 xl, h3 l ...) */
+  --heading-font-size-xxl: 32px;
+  --heading-font-size-xl: 20px;
+  --heading-font-size-l: 16px;
+  --heading-font-size-m: 16px;
+  --heading-font-size-s: 14px;
+  --heading-font-size-xs: 14px;
+  --heading-font-size-xxs: 12px;
+  --heading-line-height: 1.25;
 
   /* body sizes */
   --body-font-size-xxxl: 25px;
@@ -140,14 +153,14 @@
   --body-font-size-m: 16px;
   --body-font-size-s: 14px;
   --body-font-size-xs: 12px;
-  --body-line-height: 1.6;
+  --body-line-height: 1.5;
 
   /* nav / layout */
-  --nav-height: 64px;
+  --nav-height: 136px;
   --header-height: var(--nav-height);
 
   /* boilerplate compatibility – map to design tokens */
-  --background-color: light-dark(var(--color-parchment), var(--color-obsidian));
+  --background-color: light-dark(#fff, var(--color-obsidian));
   --light-color: var(--color-shaded);
   --dark-color: var(--color-gray-500);
   --text-color: var(--color-text);
@@ -155,14 +168,14 @@
   --link-hover-color: var(--color-link-hover);
 
   /* heritage border */
-  --border-heritage: 2px solid light-dark(rgb(161 79 43 / 20%), rgb(245 242 237 / 20%));
-  --border-radius-heritage: 24px;
+  --border-heritage: 1px solid light-dark(rgb(0 0 0 / 10%), rgb(242 248 251 / 16%));
+  --border-radius-heritage: 16px;
 
   /* gradient and glow tokens */
-  --gradient-brand: linear-gradient(135deg, var(--color-rust) 0%, var(--color-gold) 100%);
-  --gradient-brand-dark: linear-gradient(135deg, var(--color-rust-bright) 0%, var(--color-gold) 100%);
-  --shadow-glow-rust: 0 0 40px rgb(161 79 43 / 30%);
-  --shadow-glow-gold: 0 0 40px rgb(197 160 89 / 25%);
+  --gradient-brand: linear-gradient(135deg, var(--kp-blue-dark) 0%, var(--kp-blue) 100%);
+  --gradient-brand-dark: linear-gradient(135deg, var(--kp-blue) 0%, var(--color-rust-bright) 100%);
+  --shadow-glow-rust: 0 0 40px rgb(0 116 173 / 30%);
+  --shadow-glow-gold: 0 0 40px rgb(0 120 179 / 25%);
   --shadow-lift-m: 0 20px 40px -8px rgb(0 0 0 / 15%);
   --shadow-lift-l: 0 30px 60px -12px rgb(0 0 0 / 22%);
   --shadow-card: 0 2px 8px rgb(0 0 0 / 5%), 0 1px 2px rgb(0 0 0 / 7%);
@@ -186,35 +199,31 @@
 @media (width >= 600px) {
   :root,
   :host {
-    --heading-font-size-xxl: 44px;
-    --heading-font-size-xl: 36px;
-    --content-padding-inline: var(--space-l);
+    --content-padding-inline: 20px;
     --main-block-space: var(--space-xl);
-    --section-block-space: var(--space-xl);
   }
 }
 
 @media (width >= 900px) {
   :root,
   :host {
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
     --body-font-size-xs: 14px;
-    --heading-font-size-xxl: 64px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 32px;
-    --heading-font-size-m: 24px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
-    --content-padding-inline: var(--space-xl);
-    --section-block-space: var(--space-3xl);
+    --heading-font-size-xxl: 48px;
+    --heading-font-size-xl: 26px;
+    --heading-font-size-l: 20px;
+    --heading-font-size-m: 18px;
+    --heading-font-size-s: 16px;
+    --heading-font-size-xs: 16px;
+    --section-block-space: 40px;
   }
 }
 
 @media (width >= 1200px) {
   :root,
   :host {
-    --grid-container-width: 1200px;
+    --nav-height: 220px;
+    --heading-font-size-xl: 32px;
+    --section-block-space: var(--space-2xl);
   }
 }
 
@@ -257,12 +266,12 @@ body.theme-dark {
 
 html {
   min-height: 100%;
-  scroll-padding-top: calc(var(--nav-height) + 1rem);
+  scroll-padding-top: 1rem;
   scroll-behavior: smooth;
 }
 
 ::selection {
-  background: light-dark(rgb(161 79 43 / 20%), rgb(197 160 89 / 30%));
+  background: light-dark(rgb(0 116 173 / 20%), rgb(0 120 179 / 30%));
   color: inherit;
 }
 
@@ -271,11 +280,6 @@ body {
   margin: 0;
   box-sizing: border-box;
   background-color: var(--background-color);
-  background-image:
-    radial-gradient(ellipse 80% 50% at 12% 8%,
-      light-dark(rgb(197 160 89 / 9%), rgb(197 160 89 / 4%)) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 40% at 88% 82%,
-      light-dark(rgb(161 79 43 / 6%), rgb(161 79 43 / 3%)) 0%, transparent 50%);
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
@@ -307,6 +311,8 @@ footer .footer[data-block-status="loaded"] {
 }
 
 /* typography */
+
+/* KP type: Gotham Medium headings (Montserrat 500), 1.25 line height */
 h1,
 h2,
 h3,
@@ -314,7 +320,7 @@ h4,
 h5,
 h6 {
   margin-top: 0.8em;
-  margin-bottom: 0.4em;
+  margin-bottom: 0.5em;
   font-family: var(--heading-font-family);
   font-weight: 500;
   line-height: var(--heading-line-height);
@@ -323,24 +329,19 @@ h6 {
 
 h1 {
   font-size: var(--heading-font-size-xxl);
+  line-height: 1.125;
   letter-spacing: -0.02em;
 }
 
 h2 {
   font-size: var(--heading-font-size-xl);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
 }
 
-h3 { font-size: var(--heading-font-size-m); }
-h4 { font-size: var(--heading-font-size-s); }
-h5 { font-size: var(--heading-font-size-xs); }
+h3 { font-size: var(--heading-font-size-l); }
+h4 { font-size: var(--heading-font-size-m); }
+h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xxs); }
-
-@media (width >= 600px) {
-  h3 { font-size: var(--heading-font-size-l); }
-  h4 { font-size: var(--heading-font-size-m); }
-  h5 { font-size: var(--heading-font-size-s); }
-}
 
 
 p,
@@ -373,7 +374,7 @@ pre {
 
 :not(pre) > code {
   padding: 0.1em 0.35em;
-  background: rgb(161 79 43 / 10%);
+  background: rgb(0 116 173 / 10%);
   border-radius: 4px;
   color: var(--color-rust);
 }
@@ -391,20 +392,24 @@ strong {
 }
 
 /* links */
+
+/* KP links: blue, underline on hover. In dark mode the underline stays visible because
+   the link color alone is not distinct enough from the light body text */
 a:any-link {
   color: var(--link-color);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
-  text-decoration-color: light-dark(rgb(26 26 26 / 30%), rgb(245 242 237 / 30%));
+  text-decoration-color: light-dark(transparent, currentcolor);
   overflow-wrap: break-word;
 }
 
 a:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
-  text-decoration-color: var(--link-hover-color);
+  text-decoration-color: currentcolor;
 }
+
 
 /* buttons (AEM default content: links in standalone paragraphs) */
 p.button-container {
@@ -419,37 +424,26 @@ button.button {
   justify-content: center;
   gap: var(--space-xs);
   max-width: 100%;
+  min-height: 48px;
   margin: 0;
-  border: 1px solid light-dark(var(--color-rust), var(--color-rust-bright));
-  border-radius: 4px;
-  padding: 20px 50px;
+  border: 1px solid light-dark(var(--kp-border), var(--color-rust-bright));
+  border-radius: var(--kp-radius-pill);
+  padding: 11px 24px;
   font: inherit;
-  font-weight: 700;
-  font-size: 0.85rem;
-  line-height: 1.2;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.01em;
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background-color: light-dark(var(--color-rust), var(--color-rust-bright));
-  background-image: linear-gradient(135deg, rgb(255 255 255 / 12%), rgb(0 0 0 / 8%));
-  color: var(--color-light);
+  text-transform: none;
+  background-color: light-dark(var(--kp-pale-blue), transparent);
+  color: light-dark(var(--kp-blue), var(--kp-blue-light));
   cursor: pointer;
   overflow: hidden;
-  position: relative;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: all 0.4s;
-}
-
-a.button:any-link::after,
-button.button::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / 22%) 50%, transparent 70%);
-  transform: translateX(-120%);
-  transition: transform 0.55s ease;
+  transition: background-color 0.12s ease-out, color 0.12s ease-out, border-color 0.12s ease-out;
 }
 
 input,
@@ -459,46 +453,51 @@ button {
   font: inherit;
 }
 
-/* Primary variant */
-a.button.primary:any-link,
-button.button.primary {
-  border-color: var(--color-rust);
-  background-color: var(--color-rust);
-  color: var(--color-light);
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
 }
 
+/* KP pill buttons only underline on hover */
 a.button:any-link:hover,
 a.button:any-link:focus-visible,
 button.button:hover,
 button.button:focus-visible {
-  background-color: var(--color-gold);
-  border-color: var(--color-gold);
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px light-dark(rgb(161 79 43 / 30%), rgb(209 106 62 / 35%)), 0 0 0 1px var(--color-gold);
-  cursor: pointer;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: currentcolor;
 }
 
-a.button:any-link:hover::after,
-a.button:any-link:focus-visible::after,
-button.button:hover::after,
-button.button:focus-visible::after {
-  transform: translateX(120%);
+/* Primary variant – solid KP blue */
+a.button.primary:any-link,
+button.button.primary {
+  border-color: light-dark(var(--kp-blue), var(--color-rust-bright));
+  background-color: light-dark(var(--kp-blue), var(--color-rust-bright));
+  color: light-dark(#fff, var(--color-obsidian));
 }
 
 a.button.primary:hover,
 a.button.primary:focus-visible,
 button.button.primary:hover,
 button.button.primary:focus-visible {
-  border-color: var(--color-gold);
-  background-color: var(--color-gold);
-  color: var(--color-light);
+  border-color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
+  background-color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
 }
 
-a.button:any-link:focus-visible,
-button.button:focus-visible {
-  outline: 2px solid var(--link-color);
-  outline-offset: 2px;
+/* Secondary variant – white KP pill */
+a.button.secondary:any-link,
+button.button.secondary {
+  background-color: light-dark(#fff, transparent);
+  color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
+}
+
+a.button.secondary:hover,
+a.button.secondary:focus-visible,
+button.button.secondary:hover,
+button.button.secondary:focus-visible {
+  border-color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
+  background-color: light-dark(var(--kp-blue-hover), var(--color-rust-bright));
+  color: light-dark(#fff, var(--color-obsidian));
 }
 
 a.button[aria-disabled='true'],
@@ -507,29 +506,12 @@ a.button[aria-disabled='true']:focus-visible,
 button.button:disabled,
 button.button:disabled:hover,
 button.button:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+  border-color: var(--color-gray-300);
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-600);
+  text-decoration: none;
   cursor: not-allowed;
   pointer-events: none;
-}
-
-a.button.secondary,
-button.button.secondary {
-  border: 1.5px solid var(--color-rust);
-  background-color: transparent;
-  color: var(--color-rust);
-}
-
-a.button.secondary:hover,
-a.button.secondary:focus-visible,
-button.button.secondary:hover,
-button.button.secondary:focus-visible {
-  border-color: var(--color-gold);
-  background-color: light-dark(rgb(197 160 89 / 8%), rgb(197 160 89 / 12%));
-  color: var(--color-gold);
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px light-dark(rgb(197 160 89 / 18%), rgb(197 160 89 / 22%));
 }
 
 /* main content area – use design tokens for rhythm */
@@ -577,7 +559,7 @@ main img:not([width], [height]) {
 /* sections – boilerplate structure with design tokens */
 :is(main, article.article-body) > .section {
   margin: inherit;
-  padding-block: var(--space-xl);
+  padding-block: var(--section-block-space);
 }
 
 main > .section:first-child {
@@ -595,15 +577,23 @@ main > .section:has(.social-share) {
 
 main > .section > div,
 article.article-body > .section > div {
-  max-width: var(--grid-container-width);
+  box-sizing: border-box;
+  max-width: var(--content-max-width);
   margin: auto;
   padding: 0 var(--content-padding-inline);
 }
 
-/* section metadata */
+/* section metadata – KP bands: light / highlight / light-blue = pale blue, grey = KP grey */
 main .section.light,
-main .section.highlight {
+main .section.highlight,
+main .section.light-blue {
   background-color: var(--light-color);
+  margin: 0;
+  padding: var(--section-block-space) 0;
+}
+
+main .section.grey {
+  background-color: light-dark(var(--kp-grey), var(--color-card-dark));
   margin: 0;
   padding: var(--section-block-space) 0;
 }
@@ -616,7 +606,7 @@ main .section.highlight {
 :is(main, article.article-body) > .section.divider::after {
   content: '';
   display: block;
-  max-width: var(--grid-container-width);
+  max-width: calc(var(--content-max-width) - 2 * var(--content-padding-inline));
   padding: 12px 0 24px;
   margin: 0 auto;
   border-bottom: 1px solid var(--color-gray-200);
@@ -634,12 +624,12 @@ main .section.highlight {
 .spacer-bottom-m { margin-bottom: var(--space-m); }
 .spacer-bottom-l { margin-bottom: var(--space-l); }
 
-/* section-metadata style=rust: bold brand accent section */
+/* section-metadata style=rust: bold brand accent section (KP dark blue band) */
 main > .section.rust {
-  background-color: var(--color-rust);
+  background-color: light-dark(var(--kp-blue-dark), var(--color-card-dark));
   color: var(--color-parchment);
   margin: 0;
-  padding: var(--space-3xl, var(--section-block-space)) 0;
+  padding: var(--section-block-space) 0;
 }
 
 main > .section.rust * {
@@ -648,15 +638,15 @@ main > .section.rust * {
 
 main > .section.rust a:any-link {
   color: var(--color-parchment);
-  text-decoration-color: rgb(245 242 237 / 40%);
+  text-decoration-color: rgb(242 248 251 / 40%);
 }
 
-/* section-metadata style=gradient: warm brand gradient full-bleed section */
+/* section-metadata style=gradient: KP blue gradient full-bleed section */
 :is(main, article.article-body) > .section.gradient {
   background: var(--gradient-brand);
   color: var(--color-parchment);
   margin: 0;
-  padding: var(--space-3xl, var(--section-block-space)) 0;
+  padding: var(--section-block-space) 0;
 }
 
 :is(main, article.article-body) > .section.gradient * {
@@ -686,42 +676,27 @@ main > .section.rust a:any-link {
 :is(main, article.article-body) > .section.gradient button.button:hover {
   background-color: var(--color-parchment);
   border-color: var(--color-parchment);
-  color: var(--color-rust);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 20%);
+  color: var(--kp-blue-dark);
+  box-shadow: none;
 }
 
-/* section-metadata style=ink: deep dark full-bleed section */
+/* section-metadata style=ink: KP navy full-bleed section */
 :is(main, article.article-body) > .section.ink {
-  background-color: var(--color-ink);
+  background-color: light-dark(var(--color-ink), var(--color-card-dark));
   color: var(--color-parchment);
   margin: 0;
-  padding: var(--space-3xl, var(--section-block-space)) 0;
+  padding: var(--section-block-space) 0;
 }
 
 :is(main, article.article-body) > .section.ink * {
   color: var(--color-parchment);
 }
 
-/* section-metadata style=warm: atmospheric warm tint with heritage diamond mesh */
+/* section-metadata style=warm: soft tint band (KP pale blue; KP uses flat bands) */
 main > .section.warm {
-  background-color: light-dark(#f2ead8, #0e1812);
-  background-image:
-    repeating-linear-gradient(
-      45deg,
-      light-dark(rgb(161 79 43 / 4%), rgb(245 242 237 / 2%)) 0,
-      light-dark(rgb(161 79 43 / 4%), rgb(245 242 237 / 2%)) 1px,
-      transparent 1px,
-      transparent 12px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      light-dark(rgb(161 79 43 / 4%), rgb(245 242 237 / 2%)) 0,
-      light-dark(rgb(161 79 43 / 4%), rgb(245 242 237 / 2%)) 1px,
-      transparent 1px,
-      transparent 12px
-    );
+  background-color: light-dark(var(--kp-pale-blue), var(--color-card-dark));
   margin: 0;
-  padding: var(--space-3xl, var(--section-block-space)) 0;
+  padding: var(--section-block-space) 0;
 }
 
 /* gradient-text utility: apply to any heading or span for brand gradient text */

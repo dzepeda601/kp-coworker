@@ -18,32 +18,34 @@
 }
 
 .events .event-meta dt {
-  font-family: var(--font-family-mono);
-  font-size: var(--body-font-size-xs);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: light-dark(var(--color-rust), var(--color-gold));
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 500;
+  line-height: 20px;
+  color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
 }
 
 .events .event-meta dd {
   margin: 0;
-  font-family: var(--font-family-serif);
+  font-family: var(--body-font-family);
   font-size: var(--body-font-size-l);
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--text-color);
 }
 
+/* Event type – KP pill chip */
 .events .event-meta-badge {
   display: inline-block;
-  padding: 3px var(--space-m);
-  border: 1px solid light-dark(rgb(161 79 43 / 30%), rgb(209 106 62 / 35%));
-  border-radius: 20px;
-  background-color: light-dark(rgb(161 79 43 / 8%), rgb(209 106 62 / 10%));
-  font-family: var(--font-family-mono);
-  font-size: var(--body-font-size-xs);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: light-dark(var(--color-rust), var(--color-rust-bright));
+  padding: 4px var(--space-m);
+  border: 1px solid light-dark(var(--kp-border), var(--color-rust-bright));
+  border-radius: var(--kp-radius-pill);
+  background-color: light-dark(var(--kp-pale-blue), rgb(91 184 232 / 10%));
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 500;
+  line-height: 20px;
+  color: light-dark(var(--kp-blue-dark), var(--kp-blue-light));
 }
 
 @media (width >= 900px) {

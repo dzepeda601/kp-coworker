@@ -1,0 +1,21 @@
+{
+  "variantName": "columns-promo",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "grey-box",
+    "density": "compact",
+    "purpose": "promo-banner",
+    "imagePattern": "side-image-arched",
+    "structure": "image + heading + paragraph + link",
+    "notes": "Image left with curved crop, light grey bg, 1px border, rounded"
+  },
+  "contentPattern": "1 row, 2 columns: image | bold heading + paragraph + link",
+  "usage": {
+    "pagesUsing": ["https://healthy.kaiserpermanente.org/health-wellness"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-02"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://healthy.kaiserpermanente.org/health-wellness",
+  "path": "health-wellness",
+  "timestamp": "2026-10-07T21:18:53.941Z",
+  "title": "Health and wellness | Kaiser Permanente",
+  "template": "health-wellness",
+  "blocks": [
+    "hero-wellness",
+    "cards-spotlight",
+    "columns-promo",
+    "columns-topics",
+    "cards-tools",
+    "cards-articles",
+    "cards-care"
+  ]
+}

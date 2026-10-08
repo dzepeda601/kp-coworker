@@ -1,0 +1,166 @@
+/* Cards (tools) – KP "Tools for you": bordered text tiles (title + description + link)
+   with a "view all" toggle. Values from source computed styles
+   (healthy.kaiserpermanente.org/health-wellness, .gs-show-more-less .show-more-less). */
+.cards-tools {
+  /* vertical rhythm: space between tile rows and above the toggle */
+  --cards-tools-row-gap: 32px;
+  --cards-tools-toggle-offset: 56px;
+}
+
+.cards-tools .cards-tools-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--cards-tools-row-gap) 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards-tools .cards-tools-list li[hidden] {
+  display: none;
+}
+
+/* tile */
+.cards-tools .cards-tools-card {
+  box-sizing: border-box;
+  display: flex;
+  margin: 0;
+  border: 1px solid rgb(0 0 0 / 8%);
+  border-radius: 16px;
+  background-color: #fff;
+  color: var(--kp-navy, #0d1c3d);
+}
+
+.cards-tools .cards-tools-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 16px;
+}
+
+main .cards-tools.block .cards-tools-card-body h3 {
+  margin: 16px 0;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+main .cards-tools.block .cards-tools-card-body p {
+  margin: 0;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* description sits 8px below the title */
+main .cards-tools.block .cards-tools-card-body h3 + p:not(.cards-tools-card-cta) {
+  padding-top: 8px;
+}
+
+/* link pinned to the bottom so links in a row align */
+main .cards-tools.block .cards-tools-card-body .cards-tools-card-cta {
+  margin-top: auto;
+}
+
+main .cards-tools.block .cards-tools-card-body a:any-link {
+  color: var(--kp-blue, #0074ad);
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+main .cards-tools.block .cards-tools-card-body a:hover,
+main .cards-tools.block .cards-tools-card-body a:focus-visible {
+  color: var(--kp-blue-dark, #003b71);
+  text-decoration: underline;
+}
+
+/* view all / view less toggle (mirrors columns-topics) */
+.cards-tools .cards-tools-toggle-wrapper {
+  display: flex;
+  margin-top: var(--cards-tools-toggle-offset);
+}
+
+.cards-tools .cards-tools-toggle {
+  display: inline-block;
+  margin: 0;
+  padding: 8px 10px 9px 0;
+  border: 0;
+  background: none;
+  color: var(--kp-blue, #0074ad);
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: start;
+  cursor: pointer;
+}
+
+.cards-tools .cards-tools-toggle:hover,
+.cards-tools .cards-tools-toggle:focus-visible {
+  color: var(--kp-blue-dark, #003b71);
+}
+
+.cards-tools .cards-tools-toggle::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+  vertical-align: top;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 6v12M6 12h12' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / 24px 24px no-repeat;
+}
+
+.cards-tools .cards-tools-toggle[aria-expanded='true']::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12h12' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+@media (width >= 600px) {
+  .cards-tools .cards-tools-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 900px) {
+  .cards-tools {
+    --cards-tools-toggle-offset: 60px;
+  }
+
+  main .cards-tools.block .cards-tools-card-body h3 {
+    margin: 20px 0;
+  }
+
+  .cards-tools .cards-tools-toggle {
+    padding: 10px 13px 12px 0;
+  }
+}
+
+@media (width >= 1200px) {
+  .cards-tools {
+    --cards-tools-row-gap: 36px;
+    --cards-tools-toggle-offset: 48px;
+  }
+
+  .cards-tools .cards-tools-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  main .cards-tools.block .cards-tools-card-body h3 {
+    margin: 24px 0;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  .cards-tools .cards-tools-toggle {
+    padding: 12px 15px 14px 0;
+  }
+}

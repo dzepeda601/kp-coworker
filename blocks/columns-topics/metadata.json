@@ -1,0 +1,21 @@
+{
+  "variantName": "columns-topics",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light-blue",
+    "density": "medium",
+    "purpose": "topic-navigation",
+    "imagePattern": "side-image",
+    "structure": "image + heading + link list",
+    "notes": "22 pill links, '+ Show more (12)' toggle; toggle labels are optional authored paragraphs after the list (1st = show more, 2nd = show less)"
+  },
+  "contentPattern": "1 row, 2 columns: image | H2 + list of topic links (rendered as pills; show-more after first 10 handled by block JS)",
+  "usage": {
+    "pagesUsing": ["https://healthy.kaiserpermanente.org/health-wellness"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-02"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

@@ -1,0 +1,105 @@
+/* Cards (news) – KP "News & perspectives" (icon-link-text): a 44px circular
+   icon beside a navy medium-weight title and a small underlined link. Items
+   stack on small screens and sit in two equal columns from 900px. */
+main .cards-news.block {
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+}
+
+main .cards-news .cards-news-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 80px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main .cards-news .cards-news-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+}
+
+main .cards-news .cards-news-item-icon {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border-radius: 50%;
+  line-height: 0;
+}
+
+main .cards-news .cards-news-item-icon picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+main .cards-news.block .cards-news-item-icon :is(img, svg, .icon) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+main .cards-news .cards-news-item-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+main .cards-news.block .cards-news-item-body > :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+main .cards-news.block .cards-news-item-body > :is(h1, h2, h3, h4, h5, h6)::after {
+  content: none;
+}
+
+main .cards-news.block .cards-news-item-body > p {
+  margin: 0;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+main .cards-news.block .cards-news-item-body a:any-link {
+  border-radius: 2px;
+  color: var(--kp-blue, #0074ad);
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: underline;
+}
+
+/* KP inline links fill with blue on hover/focus */
+main .cards-news.block .cards-news-item-body a:hover,
+main .cards-news.block .cards-news-item-body a:focus-visible {
+  background-color: var(--kp-blue-hover, #0078b3);
+  color: #f0f7fa;
+  text-decoration: none;
+}
+
+main .cards-news.block .cards-news-item-body a .icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+@media (width >= 900px) {
+  main .cards-news .cards-news-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1vw;
+  }
+}

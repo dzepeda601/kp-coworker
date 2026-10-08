@@ -167,12 +167,60 @@ async function inlineColorIcons(scope) {
   });
 }
 
+/**
+ * Applies authored section-metadata to its section: `style` values become classes,
+ * `id` becomes the section's id (in-page anchor target), other keys become data attributes.
+ * @param {Element} main The container element
+ */
+function decorateSectionMetadata(main) {
+  main.querySelectorAll(':scope > .section div.section-metadata').forEach((sectionMeta) => {
+    const section = sectionMeta.closest('.section');
+    const meta = readBlockConfig(sectionMeta);
+    Object.keys(meta).forEach((key) => {
+      if (key === 'style') {
+        meta.style.split(',').map((s) => toClassName(s.trim())).filter(Boolean)
+          .forEach((s) => section.classList.add(s));
+      } else if (key === 'id') {
+        const id = toClassName(meta.id);
+        if (id && !document.getElementById(id)) section.id = id;
+      } else {
+        section.dataset[toCamelCase(key)] = meta[key];
+      }
+    });
+    const wrapper = sectionMeta.parentElement;
+    if (wrapper && wrapper !== section && wrapper.children.length === 1) wrapper.remove();
+    else sectionMeta.remove();
+  });
+  // Published pages render section metadata server-side, so an authored `id` arrives as data-id
+  main.querySelectorAll(':scope > .section[data-id]:not([id])').forEach((section) => {
+    const id = toClassName(section.dataset.id);
+    if (id && !document.getElementById(id)) section.id = id;
+  });
+}
+
+/**
+ * Gives icon-only links (logo, social icons) an accessible name. Uses the authored link title
+ * when present, otherwise the authored icon name (e.g. icon-youtube -> "Youtube").
+ * @param {Element} main The container element
+ */
+function labelIconOnlyLinks(main) {
+  main.querySelectorAll('a:not([aria-label])').forEach((a) => {
+    const icon = a.querySelector('span.icon');
+    if (!icon || a.textContent.trim() || a.querySelector('img:not([alt=""])')) return;
+    const name = [...icon.classList].find((c) => c.startsWith('icon-'))?.substring(5) || '';
+    const label = a.title || name.replace(/-/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
+    if (label) a.setAttribute('aria-label', label);
+  });
+}
+
 export function decorateMain(main) {
   decorateButtons(main);
   decorateIcons(main);
+  labelIconOnlyLinks(main);
   inlineColorIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionMetadata(main);
   decorateBlocks(main);
   if (document.contains(main)) initPageSchemas();
 }
@@ -234,6 +282,31 @@ function decorateCodeBlocks(main) {
       }
     });
   });
+}
+
+/**
+ * Returns the page template name. Matches the meta name case-insensitively: published pages
+ * use `template`, but previews of authored metadata can keep the author's casing (`Template`).
+ * @param {Document} doc The document
+ * @returns {string} The template name, or an empty string
+ */
+function getTemplateName(doc) {
+  const template = getMetadata('template', doc)
+    || doc.head.querySelector('meta[name="template" i]')?.content;
+  return template ? toClassName(template) : '';
+}
+
+/**
+ * Applies the page theme(s) as body classes, matching the meta name case-insensitively
+ * (see getTemplateName). Published pages are already handled by decorateTemplateAndTheme.
+ * @param {Document} doc The document
+ */
+function applyThemeClasses(doc) {
+  const theme = getMetadata('theme', doc)
+    || doc.head.querySelector('meta[name="theme" i]')?.content;
+  if (!theme) return;
+  theme.split(',').map((t) => toClassName(t.trim())).filter(Boolean)
+    .forEach((t) => doc.body.classList.add(t));
 }
 
 async function loadTemplate(main, template) {
@@ -355,15 +428,30 @@ async function loadEager(doc) {
       const { loadEager: runEager } = await import('../plugins/experimentation/src/index.js');
       await runEager(document, { audiences: AUDIENCES }, getExperimentationContext());
     }
+    const templateName = getTemplateName(doc);
+    applyThemeClasses(doc);
     decorateMain(main);
     // Re-decorate EDS block markup that a Target offer injects after decoration has
     // already run (e.g. a replaceHtml offer that brings in authored block HTML). Started
     // before martechEager applies propositions so the observer is live when offers land.
     if (personalizationEnabled && !IS_EDITOR) watchForTargetInjectedBlocks(main);
+    if (templateName) {
+      // Template styles are needed before first paint, otherwise the page renders in the
+      // site's default design and then switches (flash + layout shift).
+      document.body.classList.add(templateName);
+      try {
+        await loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`);
+      } catch (e) {
+        // template without its own stylesheet
+      }
+    }
     document.body.classList.add('appear');
     await Promise.all([
       martechLoadedPromise && martechLoadedPromise.then(martechEager),
       loadSection(main.querySelector('.section'), async (s) => {
+        // The first section's first image is the LCP candidate (set after block decoration,
+        // which may rebuild the <picture>): fetch it ahead of other resources
+        s.querySelector('img')?.setAttribute('fetchpriority', 'high');
         await waitForFirstImage(s);
         await loadFragments(s);
       }),
@@ -384,7 +472,7 @@ async function loadLazy(doc) {
   const headerEl = doc.querySelector('header');
   const footerEl = doc.querySelector('footer');
   loadHeader(headerEl);
-  const templateName = getMetadata('template');
+  const templateName = getTemplateName(doc);
   if (templateName) {
     document.body.classList.add(templateName);
     await loadTemplate(doc, templateName);

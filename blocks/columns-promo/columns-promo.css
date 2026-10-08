@@ -1,0 +1,121 @@
+/* Columns (promo) – KP "ds-banner": boxed pebble-grey banner, image beside text.
+   Values extracted from healthy.kaiserpermanente.org (.gs-banner .ds-banner).
+   The arched/blob crop is baked into the source PNG (transparent background),
+   so the image is only sized and cropped here, never masked. */
+.columns-promo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.columns-promo .columns-promo-row {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #d3d6dc;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* image: full width 16:9 on mobile */
+.columns-promo .columns-promo-img-col {
+  padding-bottom: 7px;
+  line-height: 0;
+}
+
+.columns-promo .columns-promo-img-col picture {
+  display: block;
+}
+
+main .columns-promo .columns-promo-img-col img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px 8px 0 0;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+/* text */
+.columns-promo .columns-promo-text-col {
+  padding: 16px;
+}
+
+main .columns-promo .columns-promo-text-col h2,
+main .columns-promo .columns-promo-text-col h3 {
+  margin: 0 0 8px;
+  color: var(--kp-navy, #0d1c3d);
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+/* drop the site-wide decorative heading underline (lazy-styles.css) */
+main .columns-promo.block .columns-promo-row > .columns-promo-text-col > h2::after {
+  content: none;
+}
+
+main .columns-promo .columns-promo-text-col p {
+  margin: 0 0 8px;
+  color: var(--kp-navy, #0d1c3d);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+main .columns-promo .columns-promo-text-col > :last-child {
+  margin-bottom: 0;
+}
+
+main .columns-promo .columns-promo-text-col a:any-link {
+  border-radius: 2px;
+  color: var(--kp-blue, #0074ad);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration: none;
+}
+
+main .columns-promo .columns-promo-text-col a:hover,
+main .columns-promo .columns-promo-text-col a:focus-visible {
+  color: var(--kp-blue-dark, #003b71);
+  text-decoration: underline;
+}
+
+/* desktop: fixed-width image column on the left, text top-aligned */
+@media (width >= 900px) {
+  .columns-promo .columns-promo-row {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  /* image is taken out of flow so the text (min 156px) sets the row height */
+  .columns-promo .columns-promo-img-col {
+    position: relative;
+    flex: 0 0 266px;
+    min-height: 156px;
+    padding-bottom: 0;
+  }
+
+  .columns-promo .columns-promo-img-col picture {
+    position: absolute;
+    inset: 0;
+  }
+
+  main .columns-promo .columns-promo-img-col img {
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 8px 0 0 8px;
+  }
+
+  .columns-promo .columns-promo-text-col {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
