@@ -65,6 +65,9 @@ main .social-share .social-share-action:focus-visible {
 main .social-share .social-share-action svg {
   inline-size: 18px;
   block-size: 18px;
+
+  /* block-level so the icon wrapper is exactly icon-sized (no line box in standards mode) */
+  display: block;
 }
 
 main .social-share.is-copied .social-share-action-copy {

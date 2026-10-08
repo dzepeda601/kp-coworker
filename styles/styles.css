@@ -426,6 +426,9 @@ button.button {
   max-width: 100%;
   min-height: 48px;
   margin: 0;
+
+  /* top-align so a button alone on its line adds no baseline gap below it (standards mode) */
+  vertical-align: top;
   border: 1px solid light-dark(var(--kp-border), var(--color-rust-bright));
   border-radius: var(--kp-radius-pill);
   padding: 11px 24px;
